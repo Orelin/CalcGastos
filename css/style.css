@@ -1,0 +1,28 @@
+body {
+    display: grid;
+    text-align: center;
+    margin: 0 10% 0 10%;
+    background-color: #B1AFFF;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #B8E8FC;
+}
+
+.forms{
+    display: grid;
+    margin-top: 2rem;
+}
+
+label {
+    background-color: aquamarine;
+}
+
+input {
+    margin: 0 15%;
+    padding: 1rem;
+    text-align: center;
+    background-color: #FDFDBD;
+}
