@@ -1,43 +1,89 @@
-const userText = document.querySelector("#userText");
 const amount = document.querySelector("#amount");
-const btn = document.querySelector("button");
+const error = document.querySelector(".error");
+const userText = document.querySelector("#userText");
+
+const resetBtn = document.querySelector("#resetBtn");
+const submitBtn = document.querySelector("#submitBtn");
+
+
+const amountUi = document.querySelector(".amountTotal");
+const balanceUi = document.querySelector(".balance");
+const totalUi = document.querySelector(".totalIn");
+const userTextUi = document.querySelector(".userTextUi");
+
+const forms = document.querySelector(".forms");
 const userInfo = {
-    text: userText.value,
-    amount: amount.value,
-    //!Add userMoney
-
-
+    text: "",
+    amount: 0,
+    amountUser: parseInt(prompt("Ingrese su Presupuesto...")),
+    balance: 0,
+    total: 0,
+    balanceFn() {
+        this.balance = this.amountUser - this.amount;
+        this.amountUser = this.amountUser - this.amount;
+        this.total = this.total + this.amount;
+        balanceUi.textContent = this.balance;
+        amountUi.textContent = this.total;
+    },
 }
+
+
+console.log(error.textContent);
 
 console.log(userInfo);
 
 eventListener();
 function eventListener() {
 
-    //!Add verification
-    userText.addEventListener("blur", () => {
+    forms.reset()
+    userInfo.balance = userInfo.amountUser;
+    totalUi.textContent = userInfo.amountUser;
+
+
+    userText.addEventListener("input", () => {
         let userTextIn = userText.value;
-        console.log(userTextIn);
+        if (userTextIn.length == 0) {
+            alertUi("Ingrese una descripción... o no");
+        }else{
+            userInfo.text = userTextIn;
+            console.log(userInfo);
 
-
-
+        }
     })
 
-    amount.addEventListener("blur", () => {
+    amount.addEventListener("input", () => {
         let amounIn = amount.value;
-        console.log(amounIn);
-
+        if (amounIn === undefined || amounIn <= 0 || isNaN(amounIn) ) {
+            alertUi("Ingrese un Monto valido");
+        }else {
+            userInfo.amount = parseInt(amounIn);
+        };
 
     })
 
-    btn.addEventListener("click", (e) =>	{
+    submitBtn.addEventListener("click", (e) =>	{
         e.preventDefault();
 
-        console.log("Que tocas!")
+        if(userInfo.balance < userInfo.amount){
+            alertUi("Su saldo es muy bajo");
+        }else {
+            userInfo.balanceFn();
+            forms.reset();
+        }
+    })
+
+    resetBtn.addEventListener("click", () =>{
+        document.location.reload();
     })
 }
 
 
+function alertUi (f) {
+    error.textContent = f;
 
+    setTimeout(()=>{
+        error.textContent = ""
+    }, 3000);
+}
 
 

@@ -20,18 +20,24 @@
                 <input type="text" id="userText">
                 <label for="amount">Insert amount</label><br>
                 <input type="text" name="amount" id="amount">
-                <button type="submit">Confirm</button>
+                <div class="buttons">
+                    <button id="submitBtn" type="submit">Confirm</button>
+                    <button id="resetBtn" type="reset">Reset</button>
+                </div>
             </form>
             <div class="userBalance">
                 <h3>Total de gastos mensuales</h3>
                 <p class="amountTotal">0</p>
                 <h3>Remaining balance</h3>
                 <p class="balance">0</p>
+                <h3>Total de Ingresos mensuales</h3>
+                <p class="totalIn">0</p>
+                <p class="error"></p>
             </div>
         </div>
         <div>
             <h2>User result</h2>
-            <p></p>
+            <div class="userTextUi"></div>
         </div>
     </main>
     <footer>Weed?</footer>
