@@ -1,9 +1,11 @@
-const amount = document.querySelector("#amount");
+const amountIn = document.querySelector("#amount");
 const error = document.querySelector(".error");
-const userText = document.querySelector("#userText");
+const months = document.querySelector("#months");
+const amountUser = document.querySelector("#amountUser");
 
 const resetBtn = document.querySelector("#resetBtn");
 const submitBtn = document.querySelector("#submitBtn");
+
 
 
 const amountUi = document.querySelector(".amountTotal");
@@ -12,78 +14,210 @@ const totalUi = document.querySelector(".totalIn");
 const userTextUi = document.querySelector(".userTextUi");
 
 const forms = document.querySelector(".forms");
-const userInfo = {
-    text: "",
-    amount: 0,
-    amountUser: parseInt(prompt("Ingrese su Presupuesto...")),
-    balance: 0,
-    total: 0,
-    balanceFn() {
-        this.balance = this.amountUser - this.amount;
-        this.amountUser = this.amountUser - this.amount;
-        this.total = this.total + this.amount;
-        balanceUi.textContent = this.balance;
-        amountUi.textContent = this.total;
-    },
+
+const monthsObject = {
+    january: new UserInfo(),
+    february: new UserInfo(),
+    march: new UserInfo(),
+    april: new UserInfo(),
+    may: new UserInfo(),
+    june: new UserInfo(),
+    july: new UserInfo(),
+    august: new UserInfo(),
+    september: new UserInfo(),
+    october: new UserInfo(),
+    november: new UserInfo(),
+    december: new UserInfo(),
 }
 
 
-console.log(error.textContent);
 
-console.log(userInfo);
+function UserInfo() {
+    this.text = 0,
+        this.amount = 0,
+        this.amountUser = 0,
+        this.balance = 0,
+        this.balanceNeg = 0,
+        this.total = 0,
+        this.balanceFn = function () {
+            this.total = this.total + this.amount;
+            this.balance = this.amountUser - this.total;
+            this.balanceNeg = this.amountUser-this.balance
+            balanceUi.textContent = `$${this.balance}`;
+            amountUi.textContent = `$${this.amountUser}`;
+            totalUi.textContent = `$${this.total}`;
+        }
+        this.printUi = function () {
+            balanceUi.textContent = `$${this.balance}`;
+            amountUi.textContent = `$${this.amountUser}`;
+            totalUi.textContent = `$${this.total}`; 
+            amountUser.value = this.amountUser;
+        }
+}
+
 
 eventListener();
 function eventListener() {
 
     forms.reset()
-    userInfo.balance = userInfo.amountUser;
-    totalUi.textContent = userInfo.amountUser;
+    submitBtn.disabled = true;
+    amountUser.disabled = true;
+    amountIn.disabled = true;
 
 
-    userText.addEventListener("input", () => {
-        let userTextIn = userText.value;
-        if (userTextIn.length == 0) {
-            alertUi("Ingrese una descripción... o no");
-        }else{
-            userInfo.text = userTextIn;
-            console.log(userInfo);
 
+
+    months.addEventListener("input", (g) => {
+
+
+        let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
+        let monthsSelected = months.value;
+        let monthsTextForm = g.target.options[months.value].textContent; //Mes seleccionado
+        monthsObj.text = monthsTextForm;
+
+        if (months.value < 12) {
+
+            //months.disabled = true;
+            amountUser.disabled = false
+
+            switch (months.value) {
+                case "0":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "1":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "2":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "3":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "4":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "5":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "6":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "7":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "8":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "9":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "10":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                case "11":
+                    addElements(monthsSelected, monthsObj, monthsTextForm);
+                    monthsObj.printUi();
+                    break;
+                default:
+                    submitBtn.disabled = true;
+            }
+        }
+        if (monthsObj.total > 0){
+            amountUser.disabled = true
+            amountIn.disabled = false;
+            
+        } 
+    })
+
+
+    //!Total Ingresos del mes
+    amountUser.addEventListener("input", () => {
+
+        let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
+        monthsObj.amountUser = parseInt(amountUser.value)
+
+        if (monthsObj.amountUser <= 0 || amountUser.value < amountIn.value || isNaN(monthsObj.amountUser)) {
+            alertUi("Saldo mensual insuficiente")
+            amountIn.disabled = true;
+        } else {
+            monthsObj.amountUser = parseInt(amountUser.value);
+            monthsObj.balance =+ monthsObj.amountUser;
+
+            amountIn.disabled = false;
         }
     })
 
-    amount.addEventListener("input", () => {
-        let amounIn = amount.value;
-        if (amounIn === undefined || amounIn <= 0 || isNaN(amounIn) ) {
-            alertUi("Ingrese un Monto valido");
-        }else {
-            userInfo.amount = parseInt(amounIn);
-        };
 
+    //!Salida de Gastos
+    amountIn.addEventListener("input", (e) => {
+        let amounIn = parseInt(amountIn.value);
+        let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
+
+        if (amounIn === undefined || isNaN(amounIn) || amounIn >= monthsObj.balance || amounIn < 0) {
+            alertUi("El Saldo restante del mes es insuficiente");
+            submitBtn.disabled = true;
+        } else {
+            monthsObj.amount = amounIn;
+            amountUser.disabled = true;
+            submitBtn.disabled = false;
+        };
+        console.log(amounIn)
+        console.log(monthsObj)
     })
 
-    submitBtn.addEventListener("click", (e) =>	{
+
+    //!Boton de Confirmar
+    submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if(userInfo.balance < userInfo.amount){
-            alertUi("Su saldo es muy bajo");
-        }else {
-            userInfo.balanceFn();
-            forms.reset();
-        }
+        let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
+        let monthsSelected = months.value;
+
+
+
+        monthsObj.balanceFn();
+        submitBtn.disabled = true;
+        months.disabled = false;
+        addElements(monthsSelected, monthsObj, monthsObj.text);
+        console.log(monthsObj);
+        //forms.reset();
     })
 
-    resetBtn.addEventListener("click", () =>{
+    //!Boton de Reset
+    resetBtn.addEventListener("click", () => {
         document.location.reload();
     })
 }
 
 
-function alertUi (f) {
+function alertUi(f) {
     error.textContent = f;
 
-    setTimeout(()=>{
+    setTimeout(() => {
         error.textContent = ""
     }, 3000);
 }
 
+
+function addElements(e, monthsObject, monthsTextForm) {
+
+    let Ui = Object.values(document.querySelectorAll("div.userTextUi"))[0].children[e];
+    Ui.innerHTML = `
+        <h4>${monthsTextForm}</h4>
+        <p> Total de Ingresos: $${monthsObject.amountUser} </p>
+        <p> Total de Gastos: $${monthsObject.total} </p>
+        <p> Disponible para ahorro: $${monthsObject.balance} </p>
+        `;
+}
 

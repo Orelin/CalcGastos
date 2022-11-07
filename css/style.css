@@ -1,5 +1,7 @@
 /*! Ordenar todo */
-
+*:disabled {
+    background-color: gray;
+}
 body {
     display: grid;
     text-align: center;
@@ -18,7 +20,20 @@ main {
     margin-top: 2rem;
 }
 
+.form1 {
+    display: flex;
+    margin: 0 15% 1rem;
+}
+
+
+#months {
+    margin: 0 15%;
+    text-align: center;
+    border: 1px black solid;
+}
+
 label {
+    margin: 0 15%;
     background-color: aquamarine;
 }
 
@@ -35,10 +50,19 @@ button {
 
 .buttons {
     display: flex;
-    margin: 1rem;
+
     justify-content: space-around;
 }
 
 .error {
     background-color: rgba(255, 0, 0, 0.6);
 }
+
+.userTextUi {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    border: black solid 2px;
+    background-color: aliceblue;
+}
+

@@ -15,32 +15,75 @@
     <main>
         <div>
             <h2>User info</h2>
-            <form class="forms">
-                <label for="userText">Insert text</label><br>
-                <input type="text" id="userText">
-                <label for="amount">Insert amount</label><br>
-                <input type="text" name="amount" id="amount">
+            <form class="forms" autocomplete="off">
+                <div class="form1">
+                    <h3>Seleccionar mes:</h3>
+                    <select name="subject" id="months">                    
+                        <option value="0">Enero</option>
+                        <option value="1">Febrero</option>
+                        <option value="2">Marzo</option>
+                        <option value="3">Abril</option>
+                        <option value="4">Mayo</option>
+                        <option value="5">Junio</option>
+                        <option value="6">Julio</option>
+                        <option value="7">Agosto</option>
+                        <option value="8">Setiembre</option>
+                        <option value="9">Octubre</option>
+                        <option value="10">Noviembre</option>
+                        <option value="11">Diciembre</option>
+                        <option value="12" selected="selected">Selecciona un mes</option>
+                    </select>
+                </div>
+                <label for="amountUser">total ingresos del mes</label><br>
+                <input type="number" id="amountUser">
+                <label for="amount">salida de gastos</label><br>
+                <input type="number" id="amount">
                 <div class="buttons">
                     <button id="submitBtn" type="submit">Confirm</button>
                     <button id="resetBtn" type="reset">Reset</button>
                 </div>
             </form>
             <div class="userBalance">
-                <h3>Total de gastos mensuales</h3>
-                <p class="amountTotal">0</p>
-                <h3>Remaining balance</h3>
-                <p class="balance">0</p>
                 <h3>Total de Ingresos mensuales</h3>
+                <p class="amountTotal">0</p>
+                <h3>Total de gastos mensuales</h3>
                 <p class="totalIn">0</p>
+                <h3>Dinero restante</h3>
+                <p class="balance">0</p>
                 <p class="error"></p>
             </div>
         </div>
         <div>
             <h2>User result</h2>
-            <div class="userTextUi"></div>
+            <div class="userTextUi">
+                <div class="1">
+                </div>
+                <div class="2">
+                </div>
+                <div class="3">
+                </div>
+                <div class="Ui4">
+                </div>
+                <div class="Ui5">
+                </div>
+                <div class="Ui6">
+                </div>
+                <div class="Ui7">
+                </div>
+                <div class="Ui8">
+                </div>
+                <div class="Ui9">
+                </div>
+                <div class="Ui10">
+                </div>
+                <div class="Ui11">
+                </div>
+                <div class="Ui12">
+                </div>
+            </div>
         </div>
     </main>
     <footer>Weed?</footer>
-<script src="/scripts/app.js"></script>
+    <script src="/scripts/app.js"></script>
 </body>
 </html>
