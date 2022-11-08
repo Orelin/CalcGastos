@@ -3,7 +3,7 @@ const error = document.querySelector(".error");
 const months = document.querySelector("#months");
 const amountUser = document.querySelector("#amountUser");
 
-const resetBtn = document.querySelector("#resetBtn");
+const resetBtn = document.querySelector(".resetBtn");
 const submitBtn = document.querySelector("#submitBtn");
 
 
@@ -84,50 +84,62 @@ function eventListener() {
                 case "0":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "1":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "2":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "3":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "4":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "5":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "6":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "7":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "8":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "9":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "10":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 case "11":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountIn.value = "";
                     break;
                 default:
                     submitBtn.disabled = true;
@@ -136,7 +148,6 @@ function eventListener() {
         if (monthsObj.total > 0){
             amountUser.disabled = true
             amountIn.disabled = false;
-            
         } 
     })
 
@@ -187,8 +198,10 @@ function eventListener() {
 
 
         monthsObj.balanceFn();
+        amountIn.value = "";
         submitBtn.disabled = true;
         months.disabled = false;
+
         addElements(monthsSelected, monthsObj, monthsObj.text);
         console.log(monthsObj);
         //forms.reset();
@@ -213,11 +226,13 @@ function alertUi(f) {
 function addElements(e, monthsObject, monthsTextForm) {
 
     let Ui = Object.values(document.querySelectorAll("div.userTextUi"))[0].children[e];
+
     Ui.innerHTML = `
         <h4>${monthsTextForm}</h4>
         <p> Total de Ingresos: $${monthsObject.amountUser} </p>
         <p> Total de Gastos: $${monthsObject.total} </p>
         <p> Disponible para ahorro: $${monthsObject.balance} </p>
+        <button class="resetBtn"> Limpiar mes </button>      
         `;
 }
 
