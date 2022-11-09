@@ -2,7 +2,7 @@
 
 
 *:disabled {
-    background-color: gray;
+    background-color: rgba(128, 128, 128, 0.577);
 }
 
 #months, button, .userTextUi div h4 {
@@ -55,15 +55,15 @@ label {
 }
 
 input {
-
     padding: 1rem;
     text-align: center;
     background-color: #fdfdbd;
+    transition-duration: 0.5s;
 }
 
 button {
     margin: 0.5rem;
-    transition-duration: 0.4s;
+    transition-duration: 0.5s;
 }
 
 button:hover {

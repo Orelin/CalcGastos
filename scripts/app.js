@@ -34,32 +34,43 @@ const monthsObject = {
 
 function UserInfo() {
     this.text = 0,
+    this.amount = 0,
+    this.amountUser = 0,
+    this.balance = 0,
+    this.balanceNeg = 0,
+    this.total = 0,
+    this.balanceFn = function () {
+        this.total = this.total + this.amount,
+        this.balance = this.amountUser - this.total,
+        this.balanceNeg = this.amountUser-this.balance
+        balanceUi.textContent = `$${this.balance}`,
+        amountUi.textContent = `$${this.amountUser}`,
+        totalUi.textContent = `$${this.total}`
+    },
+
+    this.printUi = function () {
+        balanceUi.textContent = `$${this.balance}`,
+        amountUi.textContent = `$${this.amountUser}`,
+        totalUi.textContent = `$${this.total}`,
+        amountUser.value = this.amountUser
+    },
+
+    this.reset = function () {
+        this.text = 0,
         this.amount = 0,
         this.amountUser = 0,
         this.balance = 0,
         this.balanceNeg = 0,
         this.total = 0,
-        this.balanceFn = function () {
-            this.total = this.total + this.amount;
-            this.balance = this.amountUser - this.total;
-            this.balanceNeg = this.amountUser-this.balance
-            balanceUi.textContent = `$${this.balance}`;
-            amountUi.textContent = `$${this.amountUser}`;
-            totalUi.textContent = `$${this.total}`;
-        }
-        this.printUi = function () {
-            balanceUi.textContent = `$${this.balance}`;
-            amountUi.textContent = `$${this.amountUser}`;
-            totalUi.textContent = `$${this.total}`; 
-            amountUser.value = this.amountUser;
-        }
-}
+        this.printUi();
+    }
+};
 
 
 eventListener();
 function eventListener() {
 
-    forms.reset()
+    forms.reset();
     submitBtn.disabled = true;
     amountUser.disabled = true;
     amountIn.disabled = true;
@@ -143,6 +154,7 @@ function eventListener() {
                     break;
                 default:
                     submitBtn.disabled = true;
+                    
             }
         }
         if (monthsObj.total > 0){
@@ -204,13 +216,17 @@ function eventListener() {
 
         addElements(monthsSelected, monthsObj, monthsObj.text);
         console.log(monthsObj);
-        //forms.reset();
     })
 
-    //!Boton de Reset
+    //!Boton de Reset Web
     resetBtn.addEventListener("click", () => {
         document.location.reload();
     })
+
+    //!Boton de Reset Mes
+    
+
+
 }
 
 
@@ -226,13 +242,14 @@ function alertUi(f) {
 function addElements(e, monthsObject, monthsTextForm) {
 
     let Ui = Object.values(document.querySelectorAll("div.userTextUi"))[0].children[e];
-
+    console.log(e);
+    
     Ui.innerHTML = `
         <h4>${monthsTextForm}</h4>
         <p> Total de Ingresos: $${monthsObject.amountUser} </p>
         <p> Total de Gastos: $${monthsObject.total} </p>
         <p> Disponible para ahorro: $${monthsObject.balance} </p>
-        <button class="resetBtn"> Limpiar mes </button>      
+        <button value=${e} class="resetMontsBtn"> Limpiar mes </button>      
         `;
 }
 
