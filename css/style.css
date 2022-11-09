@@ -1,11 +1,12 @@
 /*! Ordenar todo */
 
-
 *:disabled {
     background-color: rgba(128, 128, 128, 0.577);
 }
 
-#months, button, .userTextUi div h4 {
+#months,
+button,
+.userTextUi div h4 {
     border-radius: 1rem 0;
     -webkit-border-radius: 1rem 0;
     -moz-border-radius: 1rem 0;
@@ -13,13 +14,18 @@
     -o-border-radius: 1rem 0;
 
     border: 1px black solid;
-    padding: 0.5rem;
+    padding: 0.2rem;
+}
+
+.resetBtn,
+.userTextUi div button {
+    background: rgba(255, 75, 75);
 }
 
 body {
     display: grid;
+    margin: 0 10%;
     text-align: center;
-    margin: 0 10% 0 10%;
     background-color: #b1afff;
 }
 
@@ -41,12 +47,14 @@ h2 {
 
 .form1 {
     display: flex;
-    margin: 1rem 15%;
+    margin: 1rem 0;
+    justify-content: space-between;
 }
 
 #months {
     margin: 0 15%;
     text-align: center;
+    background-color: rgba(100, 100, 250, 0.2);
 }
 
 label {
@@ -67,19 +75,13 @@ button {
 }
 
 button:hover {
-    opacity: 75%;
-}
-
-.resetBtn {
-    background: rgba(255, 76, 76, 0.9);
+    opacity: 60%;
 }
 
 .buttons {
     display: flex;
     justify-content: space-around;
 }
-
-
 
 .error {
     background-color: rgba(255, 0, 0, 0.6);
@@ -89,16 +91,16 @@ button:hover {
     background-color: rgb(14, 221, 14);
 }
 
-/* ! userResult */ 
+/* ! userResult */
 
 .userResult {
-    /* margin: 5%; */
 }
 
 .userTextUi {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    margin: 1rem;
     background-color: #ffb9b9;
 }
 
@@ -110,13 +112,11 @@ button:hover {
 }
 
 .userTextUi div p {
-    
 }
 
 .userTextUi div button {
     margin: 5% auto;
 }
-
 
 @media (max-width: 992px) {
     main {
@@ -129,4 +129,12 @@ button:hover {
         align-items: center;
         margin: auto;
     }
+}
+
+@media (max-width: 768px) {
+    body {
+        margin: 0 5%;
+    }
+
+    /*! .userResult div p {} */
 }
