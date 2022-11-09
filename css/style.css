@@ -79,8 +79,20 @@ button:hover {
     justify-content: space-around;
 }
 
+
+
 .error {
     background-color: rgba(255, 0, 0, 0.6);
+}
+
+.success {
+    background-color: rgb(14, 221, 14);
+}
+
+/* ! userResult */ 
+
+.userResult {
+    /* margin: 5%; */
 }
 
 .userTextUi {
@@ -98,8 +110,23 @@ button:hover {
 }
 
 .userTextUi div p {
+    
 }
 
 .userTextUi div button {
     margin: 5% auto;
+}
+
+
+@media (max-width: 992px) {
+    main {
+        grid-template-columns: auto;
+    }
+    .form1 {
+        display: block;
+    }
+    #months {
+        align-items: center;
+        margin: auto;
+    }
 }

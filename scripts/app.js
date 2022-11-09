@@ -1,5 +1,5 @@
 const amountIn = document.querySelector("#amount");
-const error = document.querySelector(".error");
+const alerts = document.querySelector(".alerts");
 const months = document.querySelector("#months");
 const amountUser = document.querySelector("#amountUser");
 
@@ -170,7 +170,7 @@ function eventListener() {
         monthsObj.amountUser = parseInt(amountUser.value)
 
         if (monthsObj.amountUser <= 0 || amountUser.value < amountIn.value || isNaN(monthsObj.amountUser)) {
-            alertUi("Saldo mensual insuficiente")
+            alertUi("Saldo mensual insuficiente", "error")
             amountIn.disabled = true;
         } else {
             monthsObj.amountUser = parseInt(amountUser.value);
@@ -187,7 +187,7 @@ function eventListener() {
         let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
 
         if (amounIn === undefined || isNaN(amounIn) || amounIn >= monthsObj.balance || amounIn < 0) {
-            alertUi("El Saldo restante del mes es insuficiente");
+            alertUi("El Saldo restante del mes es insuficiente", "error");
             submitBtn.disabled = true;
         } else {
             monthsObj.amount = amounIn;
@@ -211,6 +211,7 @@ function eventListener() {
         submitBtn.disabled = true;
         months.disabled = false;
 
+        alertUi("Gasto agregado correctamente", "success");
         addElements(monthsSelected, monthsObj, monthsObj.text);
     })
 
@@ -234,11 +235,14 @@ function eventListener() {
 }
 
 
-function alertUi(f) {
-    error.textContent = f;
+function alertUi(text, type) {
+    alerts.textContent = text;
+    alerts.classList.add(type);
+
 
     setTimeout(() => {
-        error.textContent = ""
+        alerts.textContent = ""
+        alerts.classList.remove(type);
     }, 3000);
 }
 
