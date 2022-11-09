@@ -9,6 +9,11 @@ const submitBtn = document.querySelector("#submitBtn");
 
 
 const amountUi = document.querySelector(".amountTotal");
+const anualBalanceUi = document.querySelector("#anualBalance");
+const anualAmountUi = document.querySelector("#anualAmount");
+const anualTotalUi = document.querySelector("#anualTotal");
+
+
 const balanceUi = document.querySelector(".balance");
 const totalUi = document.querySelector(".totalIn");
 const userTextUi = document.querySelector(".userTextUi");
@@ -30,8 +35,6 @@ const monthsObject = {
     december: new UserInfo(),
 }
 
-
-
 function UserInfo() {
     this.text = 0,
     this.amount = 0,
@@ -42,17 +45,30 @@ function UserInfo() {
     this.balanceFn = function () {
         this.total = this.total + this.amount,
         this.balance = this.amountUser - this.total,
-        this.balanceNeg = this.amountUser-this.balance
-        balanceUi.textContent = `$${this.balance}`,
-        amountUi.textContent = `$${this.amountUser}`,
-        totalUi.textContent = `$${this.total}`
+        this.balanceNeg = this.amountUser-this.balance,
+        this.printUi()
     },
 
     this.printUi = function () {
-        balanceUi.textContent = `$${this.balance}`,
-        amountUi.textContent = `$${this.amountUser}`,
-        totalUi.textContent = `$${this.total}`,
-        amountUser.value = this.amountUser
+
+        //userInputResults
+        balanceUi.textContent = `$ ${this.balance}`,
+        amountUi.textContent = `$ ${this.amountUser}`,
+        totalUi.textContent = `$ ${this.total}`
+
+        //Total anual
+        let anualbalance = 0;
+        let anualAmount = 0;
+        let anualTotal = 0;
+        
+        for (var i = 0; i < 12; i++) {
+            anualbalance += monthsObject[Object.keys(monthsObject)[i]].balance;
+            anualAmount += monthsObject[Object.keys(monthsObject)[i]].amountUser;
+            anualTotal += monthsObject[Object.keys(monthsObject)[i]].total;
+        }
+        anualBalanceUi.textContent = `$ ${anualbalance}`
+        anualAmountUi.textContent = `$ ${anualAmount}`
+        anualTotalUi.textContent = `$ ${anualTotal}`
     },
 
     this.reset = function () {
@@ -87,68 +103,80 @@ function eventListener() {
 
         if (months.value < 12) {
 
-            //months.disabled = true;
             amountUser.disabled = false
+            amountIn.disabled = true;
 
             switch (months.value) {
                 case "0":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "1":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "2":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "3":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "4":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "5":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "6":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "7":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "8":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "9":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "10":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 case "11":
                     addElements(monthsSelected, monthsObj, monthsTextForm);
                     monthsObj.printUi();
+                    amountUser.value = monthsObj.amountUser;
                     amountIn.value = "";
                     break;
                 default:
@@ -186,7 +214,7 @@ function eventListener() {
         let amounIn = parseInt(amountIn.value);
         let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
 
-        if (amounIn === undefined || isNaN(amounIn) || amounIn >= monthsObj.balance || amounIn < 0) {
+        if (amounIn === undefined || isNaN(amounIn) || amounIn >= monthsObj.balance || amounIn < 1) {
             alertUi("El Saldo restante del mes es insuficiente", "error");
             submitBtn.disabled = true;
         } else {
@@ -228,10 +256,9 @@ function eventListener() {
         if (e.target.value <= 12){
             monthsObj.reset();
             addElements(e.target.value, monthsObj, monthsObj.text);
+            months.selectedIndex = 12;
         }
     })
-
-
 }
 
 
