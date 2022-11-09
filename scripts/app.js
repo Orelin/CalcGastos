@@ -56,7 +56,6 @@ function UserInfo() {
     },
 
     this.reset = function () {
-        this.text = 0,
         this.amount = 0,
         this.amountUser = 0,
         this.balance = 0,
@@ -77,7 +76,7 @@ function eventListener() {
 
 
 
-
+    //!Seleccion de Mes
     months.addEventListener("input", (g) => {
 
 
@@ -195,8 +194,6 @@ function eventListener() {
             amountUser.disabled = true;
             submitBtn.disabled = false;
         };
-        console.log(amounIn)
-        console.log(monthsObj)
     })
 
 
@@ -215,7 +212,6 @@ function eventListener() {
         months.disabled = false;
 
         addElements(monthsSelected, monthsObj, monthsObj.text);
-        console.log(monthsObj);
     })
 
     //!Boton de Reset Web
@@ -224,7 +220,15 @@ function eventListener() {
     })
 
     //!Boton de Reset Mes
-    
+    userTextUi.addEventListener("click", (e) => {
+
+        let monthsObj = monthsObject[Object.keys(monthsObject)[e.target.value]];
+
+        if (e.target.value <= 12){
+            monthsObj.reset();
+            addElements(e.target.value, monthsObj, monthsObj.text);
+        }
+    })
 
 
 }
@@ -242,14 +246,13 @@ function alertUi(f) {
 function addElements(e, monthsObject, monthsTextForm) {
 
     let Ui = Object.values(document.querySelectorAll("div.userTextUi"))[0].children[e];
-    console.log(e);
     
     Ui.innerHTML = `
         <h4>${monthsTextForm}</h4>
         <p> Total de Ingresos: $${monthsObject.amountUser} </p>
         <p> Total de Gastos: $${monthsObject.total} </p>
         <p> Disponible para ahorro: $${monthsObject.balance} </p>
-        <button value=${e} class="resetMontsBtn"> Limpiar mes </button>      
+        <button value=${e}> Limpiar mes </button>      
         `;
 }
 
