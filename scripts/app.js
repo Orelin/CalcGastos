@@ -1,3 +1,5 @@
+//import { indexedDb, agregar, obtener, actualizar, eliminar, consultar} from "./indexeddb.js";
+
 const amountIn = document.querySelector("#amount");
 const alerts = document.querySelector(".alerts");
 const months = document.querySelector("#months");
@@ -35,7 +37,9 @@ const monthsObject = {
     december: new UserInfo(),
 }
 
+//! Constructor
 function UserInfo() {
+    this.clave,
     this.text = 0,
     this.amount = 0,
     this.amountUser = 0,
@@ -81,24 +85,54 @@ function UserInfo() {
     }
 };
 
-
+//! Validación de formulario y Ect.
 eventListener();
 function eventListener() {
 
-    forms.reset();
+
     submitBtn.disabled = true;
     amountUser.disabled = true;
     amountIn.disabled = true;
 
+    //? Obtener Object de LocalStorage y reemplazar datos de meses
+    for (let i = 0; i < 12; i++) {
+        let getItem = localStorage.getItem(i);
+        let monthsJson = JSON.parse(getItem);
+        let monthsObj = monthsObject[Object.keys(monthsObject)[i]];
+        
+        
+        if (getItem !== null ){
+            monthsObj.text = monthsJson.text
+            monthsObj.amount = monthsJson.amount
+            monthsObj.amountUser = monthsJson.amountUser
+            monthsObj.balance = monthsJson.balance
+            monthsObj.balanceNeg = monthsJson.balanceNeg
+            monthsObj.total = monthsJson.total
+            monthsObj.printUi()         
+            addElements(i, monthsObj, monthsObj.text);
+        }
+    }
+
+
+
+    /*//? Pasarle los datos de la DB al monthsObject para poder retomar el formulario
+    Object.keys(monthsObject.january).forEach(function (key) {
+        monthsObject.april.text = "Abril"
+        monthsObject.april.total = 550
+        if (monthsObject.january[key] == 0){
+            monthsObject.january[key] = monthsObject.april[key]
+        }
+        
+    })
+    console.log(monthsObject.january)*/
 
 
     //!Seleccion de Mes
     months.addEventListener("input", (g) => {
 
-
-        let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
+        let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]]; // Mes seleccionado Object
         let monthsSelected = months.value;
-        let monthsTextForm = g.target.options[months.value].textContent; //Mes seleccionado
+        let monthsTextForm = g.target.options[months.value].textContent; //Mes seleccionado String
         monthsObj.text = monthsTextForm;
 
         if (months.value < 12) {
@@ -214,7 +248,7 @@ function eventListener() {
         let amounIn = parseInt(amountIn.value);
         let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
 
-        if (amounIn === undefined || isNaN(amounIn) || amounIn >= monthsObj.balance || amounIn < 1) {
+        if (amounIn === undefined || isNaN(amounIn) || amounIn > monthsObj.balance || amounIn < 1) {
             alertUi("El Saldo restante del mes es insuficiente", "error");
             submitBtn.disabled = true;
         } else {
@@ -233,18 +267,33 @@ function eventListener() {
         let monthsSelected = months.value;
 
 
-
+        //*Realizar balance anual
         monthsObj.balanceFn();
         amountIn.value = "";
         submitBtn.disabled = true;
         months.disabled = false;
 
+        //*Enviar datos a LocalStorage
+        let mesJson = JSON.stringify(monthsObj);
+        localStorage.setItem(monthsSelected, mesJson);
+        console.log(mesJson);
+
+
+        /*monthsObj.clave = Number(monthsSelected) //Agrego key al mes
+        let mesJson = JSON.stringify(monthsObj) //A JSON ida y vuelta para eliminar las fn
+        let mesNotFn = JSON.parse(mesJson)
+
+        agregar(mesNotFn) //Add Object a DB
+        actualizar(mesNotFn) //Update Object a DB*/
+
+        //*Imprimir datos en pantalla
         alertUi("Gasto agregado correctamente", "success");
         addElements(monthsSelected, monthsObj, monthsObj.text);
     })
 
     //!Boton de Reset Web
     resetBtn.addEventListener("click", () => {
+        localStorage.clear();
         document.location.reload();
     })
 
@@ -252,16 +301,20 @@ function eventListener() {
     userTextUi.addEventListener("click", (e) => {
 
         let monthsObj = monthsObject[Object.keys(monthsObject)[e.target.value]];
+        let monthsSelected = e.target.value;
 
-        if (e.target.value <= 12){
+        if (monthsSelected <= 12){
             monthsObj.reset();
             addElements(e.target.value, monthsObj, monthsObj.text);
             months.selectedIndex = 12;
         }
+
+        let mesJson = JSON.stringify(monthsObj);
+        localStorage.setItem(monthsSelected, mesJson);
     })
 }
 
-
+//! Alertas
 function alertUi(text, type) {
     alerts.textContent = text;
     alerts.classList.add(type);
@@ -274,6 +327,7 @@ function alertUi(text, type) {
 }
 
 
+//! Añade elementos en pantalla (userTextUi)
 function addElements(e, monthsObject, monthsTextForm) {
 
     let Ui = Object.values(document.querySelectorAll("div.userTextUi"))[0].children[e];
