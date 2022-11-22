@@ -2,6 +2,6 @@
 
 Curso: Javascript
 
-Pre-Entrega 1/4
+Pre-Entrega 2/4
 
 https://proyectocoderds.netlify.app/
