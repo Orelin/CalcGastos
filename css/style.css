@@ -6,20 +6,24 @@
 
 #months,
 button,
-.userTextUi div h4 {
+label,
+.userTextUi div h4,
+.userBank {
     border-radius: 1rem 0;
     -webkit-border-radius: 1rem 0;
     -moz-border-radius: 1rem 0;
     -ms-border-radius: 1rem 0;
     -o-border-radius: 1rem 0;
-
-    border: 1px black solid;
     padding: 0.2rem;
 }
 
 .resetBtn,
 .userTextUi div button {
     background: rgba(255, 75, 75);
+}
+
+main, input {
+
 }
 
 body {
@@ -32,8 +36,14 @@ body {
 main {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border-radius: 1rem;
     background-color: #b8e8fc;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
 }
+
 
 h2 {
     margin: 1rem 0;
@@ -60,13 +70,19 @@ h2 {
 label {
     background-color: aquamarine;
     margin-top: 1rem;
+
 }
 
 input {
     padding: 1rem;
     text-align: center;
+    border-radius: 0 1rem 0 0;
     background-color: #fdfdbd;
     transition-duration: 0.5s;
+    -webkit-border-radius: 0 1rem 0 0;
+    -moz-border-radius: 0 1rem 0 0;
+    -ms-border-radius: 0 1rem 0 0;
+    -o-border-radius: 0 1rem 0 0;
 }
 
 button {
@@ -101,7 +117,13 @@ button:hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin: 1rem;
+    padding-top: 0.5rem;
     background-color: #ffb9b9;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
 }
 
 .userTextUi div {
@@ -117,6 +139,28 @@ button:hover {
 .userTextUi div button {
     margin: 5% auto;
 }
+
+.userBank{
+    gap: 1rem;
+    margin: 1rem;
+    padding-top: 0.5rem;
+    border-radius: 1rem;
+    background-color: #ffb9b9;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.userBank h3 {
+
+
+}
+
+.userBank p {
+    background-color: #ffacc7;
+}
+
 
 @media (max-width: 992px) {
     main {
