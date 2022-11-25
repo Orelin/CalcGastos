@@ -94,7 +94,7 @@ function eventListener() {
     amountUser.disabled = true;
     amountIn.disabled = true;
 
-    //? Obtener Object de LocalStorage y reemplazar datos de meses
+    //* Obtener Object de LocalStorage y reemplazar datos de meses
     for (let i = 0; i < 12; i++) {
         let getItem = localStorage.getItem(i);
         let monthsJson = JSON.parse(getItem);
@@ -112,20 +112,6 @@ function eventListener() {
             addElements(i, monthsObj, monthsObj.text);
         }
     }
-
-
-
-    /*//? Pasarle los datos de la DB al monthsObject para poder retomar el formulario
-    Object.keys(monthsObject.january).forEach(function (key) {
-        monthsObject.april.text = "Abril"
-        monthsObject.april.total = 550
-        if (monthsObject.january[key] == 0){
-            monthsObject.january[key] = monthsObject.april[key]
-        }
-        
-    })
-    console.log(monthsObject.january)*/
-
 
     //!Seleccion de Mes
     months.addEventListener("input", (g) => {
@@ -276,19 +262,14 @@ function eventListener() {
         //*Enviar datos a LocalStorage
         let mesJson = JSON.stringify(monthsObj);
         localStorage.setItem(monthsSelected, mesJson);
-        console.log(mesJson);
 
-
-        /*monthsObj.clave = Number(monthsSelected) //Agrego key al mes
-        let mesJson = JSON.stringify(monthsObj) //A JSON ida y vuelta para eliminar las fn
-        let mesNotFn = JSON.parse(mesJson)
-
-        agregar(mesNotFn) //Add Object a DB
+        /*agregar(mesNotFn) //Add Object a DB
         actualizar(mesNotFn) //Update Object a DB*/
 
         //*Imprimir datos en pantalla
         alertUi("Gasto agregado correctamente", "success");
         addElements(monthsSelected, monthsObj, monthsObj.text);
+        entregaDosAlert(monthsObj.text, monthsObj.balance)
     })
 
     //!Boton de Reset Web
@@ -341,3 +322,27 @@ function addElements(e, monthsObject, monthsTextForm) {
         `;
 }
 
+
+//*Agregado para cumplir con la consigna pre entrega 2/4
+
+entregaDosPrompt();
+
+function entregaDosPrompt () {
+    const consigna = prompt("Bienvenido/a a su calculadora de ahorro. Digite 1 para continuar");
+
+        if (consigna != 1) {
+            alert("Hasta luego")
+            const miWebMain = document.querySelector("main")
+            const miWebFooter = document.querySelector("footer");
+            const header = document.querySelector("header")
+            document.body.removeChild(miWebMain)
+            document.body.removeChild(miWebFooter)
+            header.textContent = "Presione F5 si desea volver a ingresar"
+            alert("Presione F5 si desea volver a ingresar")
+        }
+}
+
+
+function entregaDosAlert (mes, balance) {
+    alert(`El saldo disponible para ahorro en el mes de ${mes}, es de ${balance}`)
+}

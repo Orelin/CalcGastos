@@ -22,10 +22,6 @@ label,
     background: rgba(255, 75, 75);
 }
 
-main, input {
-
-}
-
 body {
     display: grid;
     margin: 0 10%;
@@ -76,8 +72,8 @@ label {
 input {
     padding: 1rem;
     text-align: center;
-    border-radius: 0 1rem 0 0;
     background-color: #fdfdbd;
+    border-radius: 0 1rem 0 0;
     transition-duration: 0.5s;
     -webkit-border-radius: 0 1rem 0 0;
     -moz-border-radius: 0 1rem 0 0;
@@ -92,6 +88,14 @@ button {
 
 button:hover {
     opacity: 60%;
+}
+
+#submitBtn {
+    background-color: rgb(173, 255, 47);
+}
+
+#submitBtn:disabled {
+    background-color: rgba(128, 128, 128, 0.577);
 }
 
 .buttons {
