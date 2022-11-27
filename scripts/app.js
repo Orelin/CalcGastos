@@ -126,83 +126,11 @@ function eventListener() {
             amountUser.disabled = false
             amountIn.disabled = true;
 
-            switch (months.value) {
-                case "0":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "1":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "2":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "3":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "4":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "5":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "6":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "7":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "8":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "9":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "10":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                case "11":
-                    addElements(monthsSelected, monthsObj, monthsTextForm);
-                    monthsObj.printUi();
-                    amountUser.value = monthsObj.amountUser;
-                    amountIn.value = "";
-                    break;
-                default:
-                    submitBtn.disabled = true;
-                    
-            }
+
+            addElements(monthsSelected, monthsObj, monthsTextForm);
+            monthsObj.printUi();
+            amountUser.value = monthsObj.amountUser;
+            amountIn.value = "";
         }
         if (monthsObj.total > 0){
             amountUser.disabled = true
@@ -269,7 +197,6 @@ function eventListener() {
         //*Imprimir datos en pantalla
         alertUi("Gasto agregado correctamente", "success");
         addElements(monthsSelected, monthsObj, monthsObj.text);
-        entregaDosAlert(monthsObj.text, monthsObj.balance)
     })
 
     //!Boton de Reset Web
@@ -320,29 +247,4 @@ function addElements(e, monthsObject, monthsTextForm) {
         <p> Disponible para ahorro: $${monthsObject.balance} </p>
         <button value=${e}> Limpiar mes </button>      
         `;
-}
-
-
-//*Agregado para cumplir con la consigna pre entrega 2/4
-
-entregaDosPrompt();
-
-function entregaDosPrompt () {
-    const consigna = prompt("Bienvenido/a a su calculadora de ahorro. Digite 1 para continuar");
-
-        if (consigna != 1) {
-            alert("Hasta luego")
-            const miWebMain = document.querySelector("main")
-            const miWebFooter = document.querySelector("footer");
-            const header = document.querySelector("header")
-            document.body.removeChild(miWebMain)
-            document.body.removeChild(miWebFooter)
-            header.textContent = "Presione F5 si desea volver a ingresar"
-            alert("Presione F5 si desea volver a ingresar")
-        }
-}
-
-
-function entregaDosAlert (mes, balance) {
-    alert(`El saldo disponible para ahorro en el mes de ${mes}, es de ${balance}`)
 }
