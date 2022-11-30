@@ -19,7 +19,7 @@
             <form class="forms" autocomplete="off">
                 <div class="form1">
                     <h3>Seleccionar mes:</h3>
-                    <select name="subject" id="months">                    
+                    <select name="subject" id="months" class="selectBtn">                    
                         <option value="0">Enero</option>
                         <option value="1">Febrero</option>
                         <option value="2">Marzo</option>
@@ -40,8 +40,8 @@
                 <label for="amount">salida de gastos</label><br>
                 <input type="number" id="amount">
                 <div class="buttons">
-                    <button id="submitBtn" type="submit">Confirm</button>
-                    <button class="resetBtn" type="reset">Reset Datos</button>
+                    <button id="submitBtn" class="submitBtn" type="submit">Confirm</button>
+                    <button id="resetBtn" class="resetBtn" type="reset">Reset Datos</button>
                 </div>
             </form>
             <div class="userBalance">
@@ -86,7 +86,7 @@
         <div class="userConvert">
             <h2>User Currency Converter</h2>
             <div>
-                <select name="currencyFrom" id="currencyFrom">
+                <select name="currencyFrom" id="currencyFrom" class="selectBtn">
                     <option value="0">USD</option>
                     <option value="1">UYU</option>
                     <option value="2">EUR</option>
@@ -95,7 +95,7 @@
                     <option value="5">CAD</option>
                     <option value="6">CLP</option>
                 </select>
-                <select name="currencyTo" id="currencyTo">
+                <select name="currencyTo" id="currencyTo" class="selectBtn">
                     <option value="0">USD</option>
                     <option value="1">UYU</option>
                     <option value="2">EUR</option>
@@ -106,7 +106,8 @@
                 </select>
                 <input type="number" name="currencyAmount" id="currencyAmount">
             </div>
-            <button id="currencyBtn">Cotizar</button>
+            <p id="currencyResult"></p>
+            <button id="currencyBtn" class="submitBtn">Cotizar</button>
         </div>
 
         <!--? User Bank? -->

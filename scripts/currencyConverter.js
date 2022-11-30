@@ -17,7 +17,7 @@ const currencyBtn = document.querySelector("#currencyBtn");
 const currencyAmount = document.querySelector("#currencyAmount");
 const currencyFrom = document.querySelector("#currencyFrom");
 const currencyTo = document.querySelector("#currencyTo");
-
+const currencyResult = document.querySelector("#currencyResult");
 
 
 currencyBtn.addEventListener("click", (e) => {
@@ -50,14 +50,12 @@ function currencyConverter (data) {
 	let currencyAmountRate = currencyAmount.valueAsNumber
 	const FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
 	const FromToCurrency = currencyTo.options[currencyTo.value].textContent
-	const rate = Number(Object.values(data)[4])*currencyAmount.valueAsNumber; 
+	const currencyConverted = Number(Object.values(data)[4])*currencyAmount.valueAsNumber; 
 	
-	console.log(data);
-	console.log(rate);
+	let resultContent = `Invirtiendo ${currencyAmount.valueAsNumber} ${FromSelectCurrency} podra adquirir ${currencyConverted} ${FromToCurrency}`
 
-	console.log(`Invirtiendo ${currencyAmount.valueAsNumber} ${FromSelectCurrency} podra adquirir ${rate} ${FromToCurrency}`)
-
-
+	console.log(`Invirtiendo ${currencyAmount.valueAsNumber} ${FromSelectCurrency} podra adquirir ${currencyConverted} ${FromToCurrency}`)
+	currencyResult.textContent = resultContent
 }
 
 

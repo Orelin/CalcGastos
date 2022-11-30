@@ -5,7 +5,7 @@ const alerts = document.querySelector(".alerts");
 const months = document.querySelector("#months");
 const amountUser = document.querySelector("#amountUser");
 
-const resetBtn = document.querySelector(".resetBtn");
+const resetBtn = document.querySelector("#resetBtn");
 const submitBtn = document.querySelector("#submitBtn");
 
 
@@ -249,6 +249,6 @@ function addElements(e, monthsObject, monthsTextForm) {
         <p> Total de Ingresos: $${monthsObject.amountUser} </p>
         <p> Total de Gastos: $${monthsObject.total} </p>
         <p> Disponible para ahorro: $${monthsObject.balance} </p>
-        <button value=${e}> Limpiar mes </button>      
+        <button class="resetBtn" value=${e}> Limpiar mes </button>      
         `;
 }
