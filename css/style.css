@@ -4,7 +4,7 @@
     background-color: rgba(128, 128, 128, 0.577);
 }
 
-#months,
+select,
 button,
 label,
 .userTextUi div h4,
@@ -34,10 +34,6 @@ main {
     grid-template-columns: 1fr 1fr;
     border-radius: 1rem;
     background-color: #b8e8fc;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
 }
 
 
@@ -164,6 +160,47 @@ button:hover {
 .userBank p {
     background-color: #ffacc7;
 }
+
+
+
+
+.userConvert {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    background-color: #F2E5E5;
+}
+
+.userConvert div {
+    display: flex;
+    background-color: #E8C4C4;
+}
+
+select {
+    margin: 0 15%;
+    border: 1px solid black;
+}
+
+input {
+    border: 1px solid gray;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media (max-width: 992px) {

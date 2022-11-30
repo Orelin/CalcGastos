@@ -13,6 +13,7 @@
         <h1>DS Bank</h1>
     </header>
     <main>
+        <!--! User Input -->
         <div class="userInput">
             <h2>User info</h2>
             <form class="forms" autocomplete="off">
@@ -53,6 +54,8 @@
                 <p class="alerts"></p>
             </div>
         </div>
+
+        <!--! User Result -->
         <div class="userResult">
             <h2>User result</h2>
             <div class="userTextUi">
@@ -78,9 +81,43 @@
                 <p id="anualBalance">$ 0</p>
             </div>
         </div>
+
+        <!--* User Convert -->
+        <div class="userConvert">
+            <h2>User Currency Converter</h2>
+            <div>
+                <select name="currencyFrom" id="currencyFrom">
+                    <option value="0">USD</option>
+                    <option value="1">UYU</option>
+                    <option value="2">EUR</option>
+                    <option value="3">MXN</option>
+                    <option value="4">RUB</option>
+                    <option value="5">CAD</option>
+                    <option value="6">CLP</option>
+                </select>
+                <select name="currencyTo" id="currencyTo">
+                    <option value="0">USD</option>
+                    <option value="1">UYU</option>
+                    <option value="2">EUR</option>
+                    <option value="3">MXN</option>
+                    <option value="4">RUB</option>
+                    <option value="5">CAD</option>
+                    <option value="6">CLP</option>
+                </select>
+                <input type="number" name="currencyAmount" id="currencyAmount">
+            </div>
+            <button id="currencyBtn">Cotizar</button>
+        </div>
+
+        <!--? User Bank? -->
+        <div class="userBank">
+
+        </div>
     </main>
+    
     <footer>Dahian Sosa</footer>
-    <script type="module" src="/scripts/app.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/currencyConverter.js"></script>
     <!-- <script type="module" src="/scripts/indexeddb.js"></script> -->
 </body>
 </html>

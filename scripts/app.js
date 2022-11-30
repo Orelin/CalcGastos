@@ -53,6 +53,7 @@ function UserInfo() {
         this.printUi()
     },
 
+    //*Imprimir datos en pantalla
     this.printUi = function () {
 
         //userInputResults
@@ -75,6 +76,7 @@ function UserInfo() {
         anualTotalUi.textContent = `$ ${anualTotal}`
     },
 
+    //*Reset campos Meses
     this.reset = function () {
         this.amount = 0,
         this.amountUser = 0,
@@ -118,7 +120,7 @@ function eventListener() {
 
         let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]]; // Mes seleccionado Object
         let monthsSelected = months.value;
-        let monthsTextForm = g.target.options[months.value].textContent; //Mes seleccionado String
+        let monthsTextForm = g.target.options[monthsSelected].textContent; //Mes seleccionado String
         monthsObj.text = monthsTextForm;
 
         if (months.value < 12) {
@@ -177,8 +179,10 @@ function eventListener() {
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
-        let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
+
         let monthsSelected = months.value;
+        let monthsObj = monthsObject[Object.keys(monthsObject)[monthsSelected]];
+
 
 
         //*Realizar balance anual
