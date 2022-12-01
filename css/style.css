@@ -172,10 +172,10 @@ button:hover {
 }
 
 .userTextUi div {
-    background-color: #ffacc7;
+    background-color: #ffb9b9;
 }
 .userTextUi div h4 {
-    background-color: #ff8dc7;
+    background-color: #ffacc7;
 }
 
 .userTextUi div p {
@@ -185,16 +185,18 @@ button:hover {
     margin: 5% auto;
 }
 
-.userBank{
+.userBank,
+.userInput .userBalance{
     gap: 1rem;
     margin: 1rem;
     padding-top: 0.5rem;
+    padding:6px 24px;
     border-radius: 1rem;
-    background-color: #ffb9b9;
     -webkit-border-radius: 1rem;
     -moz-border-radius: 1rem;
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
+    background-color: #ffb9b9;
 }
 
 .userBank h3 {
@@ -271,7 +273,7 @@ button:hover {
 .userInput .forms input {
     margin: 0;
     box-shadow:inset 0px 1px 0px 0px #FEBE8C;
-	background:linear-gradient(to bottom, #ff8dc7 5%, #ffacc7 50%);
+	background:linear-gradient(to bottom, #ff8dc7 5%, #ffb9b9 50%);
 	border:1px solid #F7A4A4;
 }
 
@@ -296,11 +298,18 @@ button:hover {
     -o-border-radius: 0 0 0 1rem;
 }
 
-.userConvert button, 
+
 .userInput .forms input:disabled{
     background: rgba(94, 76, 91, 0.763);
 }
 
+.userInput .userBalance p{
+    background-color: #ffacc7;
+}
+
+.userTextUi div h4:disabled {
+    background: rgba(94, 76, 91, 0.763);
+}
     /* Spinner */
 .lds-dual-ring {
     display: inline-block;
