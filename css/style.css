@@ -298,6 +298,9 @@ button:hover {
     -o-border-radius: 0 0 0 1rem;
 }
 
+.userConvert button:disabled {
+    background: rgba(94, 76, 91, 0.763);
+}
 
 .userInput .forms input:disabled{
     background: rgba(94, 76, 91, 0.763);
