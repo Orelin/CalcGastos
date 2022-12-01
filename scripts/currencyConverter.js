@@ -1,62 +1,83 @@
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'cc578b2a9cmshc1f63330b18b256p170242jsn98259ccb42b7',
-		'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
-	}
-};
-
-/*fetch('https://alpha-vantage.p.rapidapi.com/query?from_currency=USD&function=CURRENCY_EXCHANGE_RATE&to_currency=EUR', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));*/
-
-
-
 const currencyBtn = document.querySelector("#currencyBtn");
 const currencyAmount = document.querySelector("#currencyAmount");
 const currencyFrom = document.querySelector("#currencyFrom");
 const currencyTo = document.querySelector("#currencyTo");
 const currencyResult = document.querySelector("#currencyResult");
+const FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
+const FromToCurrency = currencyTo.options[currencyTo.value].textContent
 
 
-currencyBtn.addEventListener("click", (e) => {
-	e.preventDefault
+eventListeners ();
+function eventListeners () {
 
-	const FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
-	const FromToCurrency = currencyTo.options[currencyTo.value].textContent
+	currencyBtn.disabled = true;
+	validConverter();
 
+	//!Currency 1 Select
+	currencyFrom.addEventListener("change", () => {
+		validConverter ()
+	}),
 
-	if (currencyAmount.valueAsNumber > 0) {
+	//!Currency 2 Select
+	currencyTo.addEventListener("change", () => {
+		validConverter ()
+	}),
 
-		const url = `https://alpha-vantage.p.rapidapi.com/query?from_currency=${FromSelectCurrency}&function=CURRENCY_EXCHANGE_RATE&to_currency=${FromToCurrency}`
+	//!Amount
+	currencyAmount.addEventListener("input", () => {
+		validConverter ()
+	}),
 
-		fetch(url, options)
-			.then(response => response.json())
-			.then(response => currencyConverter(Object.values(response) [0]))
-			.catch(err => console.error(err));
+	//!SubmitBtn
+	currencyBtn.addEventListener("click", (e) => {
+		e.preventDefault;
+		submitConverterBtn()
+	})
+}
 
+//!Validate multiple
+function validConverter () {
+	if (currencyFrom.value !== currencyTo.value && currencyAmount.valueAsNumber > 0){
+		currencyBtn.disabled = false;
+	}else (currencyBtn.disabled = true);
+}
+
+//!Submit converter Btn after validation
+function submitConverterBtn (){
+
+	const url = `https://alpha-vantage.p.rapidapi.com/query?from_currency=${FromSelectCurrency}&function=CURRENCY_EXCHANGE_RATE&to_currency=${FromToCurrency}`
+	const options = {
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': 'cc578b2a9cmshc1f63330b18b256p170242jsn98259ccb42b7',
+			'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
+		}
 	}
 
+	currencyBtn.disabled = true
 
+	fetch(url, options)
+	.then(response => response.json())
+	.then(response => currencyConverter(Object.values(response) [0]))
+	.catch(err => console.error(err));
+}
 
-})
-
-
+//! Currency converter, spinner and innerHTML
 function currencyConverter (data) {
 
-	
 	console.log("Desde function currencyConverter", data);
 	let currencyAmountRate = currencyAmount.valueAsNumber
 	const FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
 	const FromToCurrency = currencyTo.options[currencyTo.value].textContent
 	const currencyConverted = Number(Object.values(data)[4])*currencyAmount.valueAsNumber; 
 	
-	let resultContent = `Invirtiendo ${currencyAmount.valueAsNumber} ${FromSelectCurrency} podra adquirir ${currencyConverted} ${FromToCurrency}`
+	let resultContent = `Ingreso de Dinero: ${currencyAmount.valueAsNumber} ${FromSelectCurrency}. Egreso de Dinero ${currencyConverted} ${FromToCurrency}`
 
-	console.log(`Invirtiendo ${currencyAmount.valueAsNumber} ${FromSelectCurrency} podra adquirir ${currencyConverted} ${FromToCurrency}`)
-	currencyResult.textContent = resultContent
+	currencyResult.innerHTML = `
+		<div class="lds-dual-ring"></div>
+	`
+
+	setTimeout(() => {
+		currencyResult.textContent = resultContent
+	}, 5000);
 }
-
-
-

@@ -21,7 +21,6 @@ label,
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px gray;
 }
 
 .resetBtn,
@@ -39,10 +38,9 @@ body {
 main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-radius: 50px;
-    background: #B6E2A1;
-    box-shadow:  3rem 3rem 6rem #9bc089,
-                -3rem -3rem 6rem #d1ffb9;
+    background: #FFFBC1;
+    box-shadow:  0.5rem 0.5rem 1rem #F7A4A4,
+                -0.5rem -0.5rem 1rem #ffffff;
 }
 
 
@@ -54,6 +52,10 @@ h2 {
     display: grid;
     margin-top: 2rem;
     margin: 0 15%;
+}
+
+.forms label {
+    margin-top: 1rem;
 }
 
 .form1 {
@@ -78,18 +80,6 @@ label {
 
 }
 
-input {
-    padding: 1rem;
-    text-align: center;
-    background-color: #FEBE8C;
-    border-radius: 0 1rem 0 0;
-    transition-duration: 0.5s;
-    -webkit-border-radius: 0 1rem 0 0;
-    -moz-border-radius: 0 1rem 0 0;
-    -ms-border-radius: 0 1rem 0 0;
-    -o-border-radius: 0 1rem 0 0;
-}
-
 button {
     margin: 0.5rem;
     transition-duration: 0.5s;
@@ -101,9 +91,6 @@ button:hover {
 
 .resetBtn {
     box-shadow:inset 0px 1px 0px 0px #f5978e;
-	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
-	background-color:#f24537;
-	border-radius:6px;
 	border:1px solid #d02718;
 	display:inline-block;
 	cursor:pointer;
@@ -113,7 +100,6 @@ button:hover {
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #810e05;
 }
 
 .resetBtn:hover {
@@ -128,7 +114,6 @@ button:hover {
 .submitBtn {
 	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
 	background:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
-	background-color:#b8e356;
 	border-radius:6px;
 	border:1px solid #83c41a;
 	display:inline-block;
@@ -139,7 +124,6 @@ button:hover {
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #86ae47;
 }
 .submitBtn:hover {
 	background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
@@ -151,7 +135,8 @@ button:hover {
 }
 
 #submitBtn:disabled {
-    background-color: rgba(128, 128, 128, 0.577);
+    background: rgba(128, 128, 128, 0.577);
+    border:1px solid gray;
 }
 
 .buttons {
@@ -170,6 +155,7 @@ button:hover {
 /* ! userResult */
 
 .userResult {
+    background: linear-gradient(to bottom, #F7A4A4 50%, #FEBE8C 100%);
 }
 
 .userTextUi {
@@ -227,15 +213,22 @@ button:hover {
     display: grid;
     grid-template-rows: 1fr 1fr;
     border-radius: 0 1rem;
-    background-color: #F2E5E5;
+    background-color: #ccc89a;
     -webkit-border-radius: 0 1rem;
     -moz-border-radius: 0 1rem;
     -ms-border-radius: 0 1rem;
     -o-border-radius: 0 1rem;
 }
 
-.userConvert h2 {
-    color: black;
+
+/* *Titles */
+.userConvert h2,
+.forms label,
+.userInput{
+
+	background:linear-gradient(to bottom, #FFFBC1 50%, #F7A4A4 100%);
+	border:0;
+	display:inline-block;
 	font-family:Arial;
 	font-size:15px;
 	font-weight:bold;
@@ -243,37 +236,94 @@ button:hover {
 	text-decoration:none;
 }
 
+.userConvert h2 {
+    box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:linear-gradient(to bottom, #fffbc1 5%, #ccc89a 100%);
+    border:1px solid #fffbc1;
+}
+
+.userInput {
+    background:linear-gradient(to bottom, #F7A4A4 50%, #FEBE8C 100%);
+	border:1px solid #F7A4A4;
+}
+
+/* * */
+
+
+/* *Inputs */
+.userConvert div select,
+.userConvert input,
+.userInput .forms input{
+    margin: 0 auto;
+    box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:linear-gradient(to bottom, #fffbc1 5%, #ccc89a 100%);
+	border:1px solid #fffbc1;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+    text-align: center;
+}
+
+.userInput .forms input {
+    margin: 0;
+    box-shadow:inset 0px 1px 0px 0px #FEBE8C;
+	background:linear-gradient(to bottom, #ff8dc7 5%, #ffacc7 50%);
+	border:1px solid #F7A4A4;
+}
+
+
+/* * */
+
 .userConvert div {
     display: flex;
-    background-color: #E8C4C4;
-}
-
-.userConvert div select {
-    margin: 0 auto;
-}
-
-.userConvert div input {
-    border: 1px solid gray;
-    
 }
 
 .userConvert p {
-    background-color: #a5cc52d4;
     padding: 1rem;
-    justify-content: baseline;
+    margin: 0 auto;
 }
 
 .userConvert button {
     margin: 0;
     border-radius: 0 0 0 1rem;
-    background-color: aquamarine;
     -webkit-border-radius: 0 0 0 1rem;
     -moz-border-radius: 0 0 0 1rem;
     -ms-border-radius: 0 0 0 1rem;
     -o-border-radius: 0 0 0 1rem;
 }
 
+.userConvert button, 
+.userInput .forms input:disabled{
+    background: rgba(94, 76, 91, 0.763);
+}
 
+    /* Spinner */
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.5rem;
+    border-radius: 50%;
+    border: 0.5rem solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% { transform: rotate(0deg); -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg);
+}
+    100% {
+    transform: rotate(360deg);
+}}
 
 
 
