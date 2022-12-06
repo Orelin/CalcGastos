@@ -38,9 +38,14 @@ body {
 main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: #FFFBC1;
-    box-shadow:  0.5rem 0.5rem 1rem #F7A4A4,
-                -0.5rem -0.5rem 1rem #ffffff;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    box-shadow:  1rem 1rem 0.5rem #9bc089,
+                -1rem -1rem 0.5rem #d1ffb9;
+    background: #B6E2A1;
 }
 
 
@@ -144,14 +149,6 @@ button:hover {
     justify-content: space-around;
 }
 
-.error {
-    background-color: rgba(255, 0, 0, 0.6);
-}
-
-.success {
-    background-color: rgb(14, 221, 14);
-}
-
 /* ! userResult */
 
 .userResult {
@@ -223,7 +220,7 @@ button:hover {
 }
 
 
-/* *Titles */
+/*! *Titles */
 .userConvert h2,
 .forms label,
 .userInput{
@@ -252,7 +249,7 @@ button:hover {
 /* * */
 
 
-/* *Inputs */
+/*! *Inputs */
 .userConvert div select,
 .userConvert input,
 .userInput .forms input{
@@ -291,11 +288,7 @@ button:hover {
 
 .userConvert button {
     margin: 0;
-    border-radius: 0 0 0 1rem;
-    -webkit-border-radius: 0 0 0 1rem;
-    -moz-border-radius: 0 0 0 1rem;
-    -ms-border-radius: 0 0 0 1rem;
-    -o-border-radius: 0 0 0 1rem;
+
 }
 
 .userConvert button:disabled {
@@ -308,6 +301,14 @@ button:hover {
 
 .userInput .userBalance p{
     background-color: #ffacc7;
+}
+
+.userInput .userBalance .error {
+    background-color: #d02718;
+}
+
+.userInput .userBalance .success {
+    background-color: #83c41a;
 }
 
 .userTextUi div h4:disabled {

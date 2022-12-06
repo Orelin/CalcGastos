@@ -97,23 +97,7 @@ function eventListener() {
     amountIn.disabled = true;
 
     //* Obtener Object de LocalStorage y reemplazar datos de meses
-    for (let i = 0; i < 12; i++) {
-        let getItem = localStorage.getItem(i);
-        let monthsJson = JSON.parse(getItem);
-        let monthsObj = monthsObject[Object.keys(monthsObject)[i]];
-        
-        
-        if (getItem !== null ){
-            monthsObj.text = monthsJson.text
-            monthsObj.amount = monthsJson.amount
-            monthsObj.amountUser = monthsJson.amountUser
-            monthsObj.balance = monthsJson.balance
-            monthsObj.balanceNeg = monthsJson.balanceNeg
-            monthsObj.total = monthsJson.total
-            monthsObj.printUi()         
-            addElements(i, monthsObj, monthsObj.text);
-        }
-    }
+    monthsLS()
 
     //!Seleccion de Mes
     months.addEventListener("input", (g) => {
@@ -251,4 +235,24 @@ function addElements(e, monthsObject, monthsTextForm) {
         <p> Disponible para ahorro: $${monthsObject.balance} </p>
         <button class="resetBtn" value=${e}> Limpiar mes </button>      
         `;
+}
+
+function monthsLS(){
+    for (let i = 0; i < 12; i++) {
+        let getItem = localStorage.getItem(i);
+        let monthsJson = JSON.parse(getItem);
+        let monthsObj = monthsObject[Object.keys(monthsObject)[i]];
+            
+            
+        if (getItem !== null ){
+            monthsObj.text = monthsJson.text
+            monthsObj.amount = monthsJson.amount
+            monthsObj.amountUser = monthsJson.amountUser
+            monthsObj.balance = monthsJson.balance
+            monthsObj.balanceNeg = monthsJson.balanceNeg
+            monthsObj.total = monthsJson.total
+            monthsObj.printUi()         
+            addElements(i, monthsObj, monthsObj.text);
+        }
+    }
 }
