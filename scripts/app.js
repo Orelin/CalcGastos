@@ -189,8 +189,11 @@ function eventListener() {
 
     //!Boton de Reset Web
     resetBtn.addEventListener("click", () => {
-        localStorage.clear();
+        confirmar = confirm ("Reset all amounts?")
+        if (confirmar) {
+        localStorage.clear()  
         document.location.reload();
+        }
     })
 
     //!Boton de Reset Mes
@@ -199,14 +202,15 @@ function eventListener() {
         let monthsObj = monthsObject[Object.keys(monthsObject)[e.target.value]];
         let monthsSelected = e.target.value;
 
-        if (monthsSelected <= 12){
+        confirmar = confirm (`Desea eliminar los montos de ${monthsObj.text}?`)
+
+        if (confirmar) {
             monthsObj.reset();
             addElements(e.target.value, monthsObj, monthsObj.text);
             months.selectedIndex = 12;
+            let mesJson = JSON.stringify(monthsObj);
+            localStorage.setItem(monthsSelected, mesJson);
         }
-
-        let mesJson = JSON.stringify(monthsObj);
-        localStorage.setItem(monthsSelected, mesJson);
     })
 }
 
