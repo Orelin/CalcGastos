@@ -197,6 +197,10 @@ button:hover {
     background-color: #ffb9b9;
 }
 
+.userBank {
+    margin-block-end: auto;
+}
+
 .userBank h3 {
 
 
@@ -349,17 +353,45 @@ button:hover {
     
 }
 
+footer, header {
+    margin: auto;
+    color: white;;
+}
 
+footer ul {
+    display: flex;
+    justify-content: space-evenly;
+}
 
+footer ul li {
+    height: 100%;
+}
 
+footer ul a {
+    text-align: center;
+    margin: 1rem;
+}
+footer ul .fa {
+    padding: 1rem 0.7rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    color: white;
+}
 
+footer ul .fa-linkedin {
+    background-color: #007bb5;
+}
 
+footer ul .fa-github {
+    background-color: black;
+}
 
-
-
-
-
-
+footer ul .fa:hover {
+    opacity: 0.7;
+}
 
 
 
