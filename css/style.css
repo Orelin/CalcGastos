@@ -45,7 +45,7 @@ main {
     -o-border-radius: 2rem;
     box-shadow:  1rem 1rem 5rem #000000,
                 -1rem -1rem 5rem #2a3357;
-    background: #678983;
+    background: #512a574f;
 }
 
 
@@ -389,8 +389,13 @@ footer ul .fa-github {
     background-color: black;
 }
 
-footer ul .fa:hover {
+footer ul .fa:hover,
+footer small a:hover {
     opacity: 0.7;
+}
+
+footer small {
+    display: flex;
 }
 
 
@@ -412,6 +417,4 @@ footer ul .fa:hover {
     body {
         margin: 0 5%;
     }
-
-    /*! .userResult div p {} */
 }

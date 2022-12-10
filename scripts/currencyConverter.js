@@ -5,7 +5,7 @@ const currencyTo = document.querySelector("#currencyTo");
 const currencyResult = document.querySelector("#currencyResult");
 
 
-
+//!Events
 eventListeners ();
 function eventListeners () {
 

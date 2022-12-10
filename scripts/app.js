@@ -7,19 +7,14 @@ const amountUser = document.querySelector("#amountUser");
 
 const resetBtn = document.querySelector("#resetBtn");
 const submitBtn = document.querySelector("#submitBtn");
-
-
-
 const amountUi = document.querySelector(".amountTotal");
 const anualBalanceUi = document.querySelector("#anualBalance");
 const anualAmountUi = document.querySelector("#anualAmount");
 const anualTotalUi = document.querySelector("#anualTotal");
 
-
 const balanceUi = document.querySelector(".balance");
 const totalUi = document.querySelector(".totalIn");
 const userTextUi = document.querySelector(".userTextUi");
-
 const forms = document.querySelector(".forms");
 
 const monthsObject = {
@@ -198,10 +193,8 @@ function eventListener() {
 
     //!Boton de Reset Mes
     userTextUi.addEventListener("click", (e) => {
-
         let monthsObj = monthsObject[Object.keys(monthsObject)[e.target.value]];
         let monthsSelected = e.target.value;
-
         confirmar = confirm (`Desea eliminar los montos de ${monthsObj.text}?`)
 
         if (confirmar) {
@@ -219,13 +212,11 @@ function alertUi(text, type) {
     alerts.textContent = text;
     alerts.classList.add(type);
 
-
     setTimeout(() => {
         alerts.textContent = ""
         alerts.classList.remove(type);
     }, 3000);
 }
-
 
 //! Añade elementos en pantalla (userTextUi)
 function addElements(e, monthsObject, monthsTextForm) {
@@ -246,7 +237,6 @@ function monthsLS(){
         let getItem = localStorage.getItem(i);
         let monthsJson = JSON.parse(getItem);
         let monthsObj = monthsObject[Object.keys(monthsObject)[i]];
-            
             
         if (getItem !== null ){
             monthsObj.text = monthsJson.text

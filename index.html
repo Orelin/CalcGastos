@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1>Proyecto JS CoderHouse (Entrega 3/4)</h1>
+        <h1> Proyecto JS CoderHouse (Entrega 3/4)</h1>
     </header>
     <main>
         <!--! User Input -->
@@ -34,7 +34,7 @@
                         <option value="9">Octubre</option>
                         <option value="10">Noviembre</option>
                         <option value="11">Diciembre</option>
-                        <option value="12" selected="selected">Selecciona un mes</option>
+                        <option value="12" selected disabled hidden>Selecciona un mes</option>
                     </select>
                 </div>
                 <label for="amountUser">total ingresos del mes</label><br>
@@ -87,11 +87,11 @@
         <!--* User Convert -->
         <div class="userConvert">
             <h2>User Currency Converter</h2>
-            <div>
+            <div >
                 <input type="number" name="currencyAmount" id="currencyAmount">
-                <select name="currencyFrom" id="currencyFrom" class="selectBtn">
+                <select name="currencyFrom" id="currencyFrom" class="selectBtn" autocomplete="off">
                     <option value="0">USD</option>
-                    <option value="1">UYU</option>
+                    <option value="1" selected="selected">UYU</option>
                     <option value="2">EUR</option>
                     <option value="3">MXN</option>
                     <option value="4">RUB</option>
@@ -101,8 +101,8 @@
                 <span class="material-symbols-outlined">
                     currency_exchange
                     </span>
-                <select name="currencyTo" id="currencyTo" class="selectBtn">
-                    <option value="0">USD</option>
+                <select name="currencyTo" id="currencyTo" class="selectBtn" autocomplete="off">
+                    <option value="0" selected="selected">USD</option>
                     <option value="1">UYU</option>
                     <option value="2">EUR</option>
                     <option value="3">MXN</option>
@@ -126,7 +126,7 @@
             <li><a href="https://www.linkedin.com/in/dahian-sosa/" class="fa fa-linkedin fa-lg" target="_blank" aria-hidden="true"></a></li>
             <li><a href="https://github.com/Orelin" class="fa fa-github fa-lg" target="_blank" aria-hidden="true"></a></li>
         </ul>
-        <small>&copy; Copyright 2022, Dahian Sosa. All Rights Reserved</small>
+        <small>&copy; Copyright 2022, <a href="https://dsporfolio.netlify.app/" target="_blank">Dahian Sosa</a>. All Rights Reserved</small>
     </footer>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/currencyConverter.js"></script>
