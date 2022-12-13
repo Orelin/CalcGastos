@@ -1,5 +1,3 @@
-//import { indexedDb, agregar, obtener, actualizar, eliminar, consultar} from "./indexeddb.js";
-
 const amountIn = document.querySelector("#amount");
 const alerts = document.querySelector(".alerts");
 const months = document.querySelector("#months");
@@ -81,6 +79,7 @@ function UserInfo() {
         this.printUi();
     }
 };
+console.log(monthsObject);
 
 //! Validación de formulario y Ect.
 eventListener();
@@ -222,12 +221,13 @@ function alertUi(text, type) {
 function addElements(e, monthsObject, monthsTextForm) {
 
     let Ui = Object.values(document.querySelectorAll("div.userTextUi"))[0].children[e];
-    
+    let {amountUser, total, balance} = monthsObject
+
     Ui.innerHTML = `
         <h4>${monthsTextForm}</h4>
-        <p> Total de Ingresos: $${monthsObject.amountUser} </p>
-        <p> Total de Gastos: $${monthsObject.total} </p>
-        <p> Disponible para ahorro: $${monthsObject.balance} </p>
+        <p> Total de Ingresos: $${amountUser} </p>
+        <p> Total de Gastos: $${total} </p>
+        <p> Disponible para ahorro: $${balance} </p>
         <button class="resetBtn" value=${e}> Limpiar mes </button>      
         `;
 }

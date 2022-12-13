@@ -281,8 +281,13 @@ button:hover {
 
 /* * */
 
+.userConvert {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
 .userConvert div {
     display: flex;
+    padding: 0 20%;
 }
 
 .userConvert p {
