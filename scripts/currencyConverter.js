@@ -70,12 +70,9 @@ function currencyConverter (data) {
 	let currencyAmountRate = currencyAmount.valueAsNumber
 	let FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
 	let FromToCurrency = currencyTo.options[currencyTo.value].textContent
-	let currencyConverted = Number(Object.values(data)[4])*currencyAmount.valueAsNumber; 
-	
-	let resultContent = `Ingreso de Dinero: ${currencyAmount.valueAsNumber} ${FromSelectCurrency}. Egreso de Dinero ${currencyConverted} ${FromToCurrency}`
-
-
-	console.log(Number(Object.values(data)[4]));
+	let currencyConverted = Number(Object.values(data)[4])*currencyAmount.valueAsNumber
+	let currencyConvertedFixed = currencyConverted.toFixed(2)	
+	let resultContent = `Ingreso de Dinero: ${currencyAmount.valueAsNumber} ${FromSelectCurrency}. Egreso de Dinero ${currencyConvertedFixed} ${FromToCurrency}`
 
 	currencyResult.innerHTML = `
 		<div class="lds-dual-ring"></div>
