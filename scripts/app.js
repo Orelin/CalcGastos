@@ -208,13 +208,17 @@ function eventListener() {
 
 //! Alertas
 function alertUi(text, type) {
-    alerts.textContent = text;
-    alerts.classList.add(type);
-
-    setTimeout(() => {
-        alerts.textContent = ""
-        alerts.classList.remove(type);
-    }, 3000);
+    Toastify({
+        text: text,
+        duration: 2000,
+        newWindow: true,
+        close: false,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        className: type,
+        onClick: function(){} // Callback after click
+    }).showToast();
 }
 
 //! Añade elementos en pantalla (userTextUi)

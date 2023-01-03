@@ -312,12 +312,12 @@ button:hover {
     background-color: #ffacc7;
 }
 
-.userInput .userBalance .error {
-    background-color: #d02718;
+.error {
+    background: #d02718;
 }
 
-.userInput .userBalance .success {
-    background-color: #83c41a;
+.success {
+    background: #83c41a;
 }
 
 .userTextUi div h4:disabled {
