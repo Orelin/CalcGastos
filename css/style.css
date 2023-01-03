@@ -228,6 +228,7 @@ button:hover {
 
 /*! *Titles */
 .userConvert h2,
+.userResult h2,
 .forms label,
 .userInput{
 
@@ -242,13 +243,17 @@ button:hover {
 }
 
 .userConvert h2 {
-	background:#ece4cc;
+    background:#ece4cc;
     box-shadow: rgba(35, 55, 80, 0.3) 0 .5rem 1rem;
 }
 
 .userInput {
     background:linear-gradient(to bottom, #F7A4A4 50%, #FEBE8C 100%);
 	border:1px solid #F7A4A4;
+}
+
+.userResult h2 {
+    background: transparent;
 }
 
 /* * */

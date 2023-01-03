@@ -1,5 +1,4 @@
 const amountIn = document.querySelector("#amount");
-const alerts = document.querySelector(".alerts");
 const months = document.querySelector("#months");
 const amountUser = document.querySelector("#amountUser");
 
@@ -79,12 +78,10 @@ function UserInfo() {
         this.printUi();
     }
 };
-console.log(monthsObject);
 
 //! Validación de formulario y Ect.
 eventListener();
 function eventListener() {
-
 
     submitBtn.disabled = true;
     amountUser.disabled = true;
@@ -131,7 +128,6 @@ function eventListener() {
         } else {
             monthsObj.amountUser = parseInt(amountUser.value);
             monthsObj.balance =+ monthsObj.amountUser;
-
             amountIn.disabled = false;
         }
     })
@@ -157,10 +153,8 @@ function eventListener() {
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
-
         let monthsSelected = months.value;
         let monthsObj = monthsObject[Object.keys(monthsObject)[monthsSelected]];
-
 
 
         //*Realizar balance anual
@@ -169,12 +163,11 @@ function eventListener() {
         submitBtn.disabled = true;
         months.disabled = false;
 
+
         //*Enviar datos a LocalStorage
         let mesJson = JSON.stringify(monthsObj);
         localStorage.setItem(monthsSelected, mesJson);
 
-        /*agregar(mesNotFn) //Add Object a DB
-        actualizar(mesNotFn) //Update Object a DB*/
 
         //*Imprimir datos en pantalla
         alertUi("Gasto agregado correctamente", "success");
@@ -183,7 +176,7 @@ function eventListener() {
 
     //!Boton de Reset Web
     resetBtn.addEventListener("click", () => {
-        confirmar = confirm ("Reset all amounts?")
+        confirmar = confirm ("Desea eliminar todos los montos?")
         if (confirmar) {
         localStorage.clear()  
         document.location.reload();
