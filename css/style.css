@@ -408,23 +408,20 @@ footer small {
     display: flex;
 }
 
-
-
 @media (max-width: 992px) {
-    main {
-        grid-template-columns: auto;
+    body {
+        margin: 0 0;
     }
+    main,
+    .userInput,
     .form1 {
         display: block;
+    }
+    .userConvert div {
+        padding: 0 5%
     }
     #months {
         align-items: center;
         margin: auto;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        margin: 0 5%;
     }
 }

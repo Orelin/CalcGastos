@@ -66,7 +66,6 @@ function submitConverterBtn (){
 //! Currency converter, spinner and innerHTML
 function currencyConverter (data) {
 
-	console.log("Desde function currencyConverter", data);
 	let currencyAmountRate = currencyAmount.valueAsNumber
 	let FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
 	let FromToCurrency = currencyTo.options[currencyTo.value].textContent
