@@ -139,7 +139,7 @@ function eventListener() {
         let monthsObj = monthsObject[Object.keys(monthsObject)[months.value]];
 
         if (amounIn === undefined || isNaN(amounIn) || amounIn > monthsObj.balance || amounIn < 1) {
-            alertUi("El Saldo restante del mes es insuficiente", "error");
+            alertUi("El Saldo mes es insuficiente", "error");
             submitBtn.disabled = true;
         } else {
             monthsObj.amount = amounIn;
@@ -206,7 +206,7 @@ function alertUi(text, type) {
         duration: 2000,
         newWindow: true,
         close: false,
-        gravity: "bottom", // `top` or `bottom`
+        gravity: "top", // `top` or `bottom`
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         className: type,

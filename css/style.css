@@ -420,6 +420,12 @@ footer small {
     .userConvert div {
         padding: 0 5%
     }
+    .userConvert input {
+        width: 8rem;
+    }
+    .userConvert select {
+        width: 5rem;
+    }
     #months {
         align-items: center;
         margin: auto;
