@@ -11,17 +11,16 @@
     <title>DS Bank</title>
 </head>
 <body>
-    <header>
-        <h1> Proyecto JS CoderHouse (Entrega 4/4)</h1>
+    <header class="header">
+        <h1 class="header__h1" > Calculadora de Gastos</h1>
     </header>
-    <main>
+    <main class="main">
         <!--! User Input -->
-        <div class="userInput">
-            <h2>Ingreso de Montos Mensuales</h2>
-            <form class="forms" autocomplete="off">
-                <div class="form1">
-                    <h3>Seleccionar mes:</h3>
-                    <select name="subject" id="months" class="selectBtn">                    
+        <div class="main__div--userInput">
+            <h2 class="main__h2">Ingreso de Datos del Mes</h2>
+            <form class="main__form" autocomplete="off">
+                <div class="main__div--form">
+                    <select class="main__select" name="subject" id="months">                    
                         <option value="0">Enero</option>
                         <option value="1">Febrero</option>
                         <option value="2">Marzo</option>
@@ -34,32 +33,32 @@
                         <option value="9">Octubre</option>
                         <option value="10">Noviembre</option>
                         <option value="11">Diciembre</option>
-                        <option value="12" selected disabled hidden>Selecciona un mes</option>
+                        <option value="12" selected disabled hidden>Hazme clic y Selecciona un mes</option>
                     </select>
                 </div>
-                <label for="amountUser">total ingresos del mes</label><br>
-                <input type="number" id="amountUser">
-                <label for="amount">salida de gastos</label><br>
-                <input type="number" placeholder= "Gastos $" id="amount">
-                <div class="buttons">
-                    <button id="submitBtn" class="submitBtn" type="submit">Confirm</button>
-                    <button id="resetBtn" class="resetBtn" type="reset">Reset Datos</button>
+                <label class="main__label" for="amountUser">Total ingresos del mes</label>
+                <input class="main__input" type="number" placeholder= "Ingresos del mes $" id="amountUser">
+                <label class="main__label" for="amount">Salida de gastos</label>
+                <input class="main__input" type="number" placeholder= "Gastos $" id="amount">
+                <div class="main__div--btn">
+                    <button id="submitBtn" class="main__btn--submit" type="submit">Confirm</button>
+                    <button id="resetBtn" class="main__btn--reset" type="reset">Reset Datos</button>
                 </div>
             </form>
-            <div class="userBalance">
-                <h3>Total de Ingresos mensuales</h3>
-                <p class="amountTotal">$ 0</p>
-                <h3>Total de gastos mensuales</h3>
-                <p class="totalIn">$ 0</p>
-                <h3>Total mensual para ahorro</h3>
-                <p class="balance">$ 0</p>
+            <div class="main__div--totales">
+                <h3 class="main__h3--totales">Ingreso mensual</h3>
+                <p  class="main__p--totales" id="amountTotal">$ 0</p>
+                <h3 class="main__h3--totales">Gasto mensual</h3>
+                <p  class="main__p--totales" id="totalIn">$ 0</p>
+                <h3 class="main__h3--totales">Total disponible para ahorro</h3>
+                <p  class="main__p--totales" id="balance">$ 0</p>
             </div>
         </div>
         
         <!--! User Result -->
-        <div class="userResult">
-            <h2>Resumen de Balance Anual</h2>
-            <div class="userTextUi">
+        <div class="main__div--userResult">
+            <h2  class="main__h2--userResult">Resumen de Balance Anual</h2>
+            <div class="main__div--userTextUi" id="userTextUi">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -73,22 +72,22 @@
                 <div></div>
                 <div></div>
             </div>
-            <div class="userBank">
-                <h3>Total de Ingreso Anual</h3>
-                <p id="anualAmount">$ 0</p>
-                <h3>Total de Gasto Anual</h3>
-                <p id="anualTotal">$ 0</p>
-                <h3>Total de ahorro Anual</h3>
-                <p id="anualBalance">$ 0</p>
+            <div class="main__div--totales">
+                <h3 class="main__h3--totales">Total de Ingreso Anual</h3>
+                <p class="main__p--totales" id="anualAmount">$ 0</p>
+                <h3 class="main__h3--totales">Total de Gasto Anual</h3>
+                <p class="main__p--totales" id="anualTotal">$ 0</p>
+                <h3 class="main__h3--totales">Total de ahorro Anual</h3>
+                <p class="main__p--totales" id="anualBalance">$ 0</p>
             </div>
         </div>
 
-        <!--* User Convert -->
-        <div class="userConvert">
-            <h2>Conversor de Divisas</h2>
-            <div >
-                <input type="number" placeholder="$ 1500" name="currencyAmount" id="currencyAmount">
-                <select name="currencyFrom" id="currencyFrom" class="selectBtn" autocomplete="off">
+        <!--! User Convert -->
+        <section class="main__section--userConvert">
+            <h2 class="main__h2">Conversor de Divisas</h2>
+            <div class="main__div--userConvert">
+                <input  class="main__input--currencyAmount" type="number" placeholder="$ 1500" name="currencyAmount" id="currencyAmount">
+                <select class="main__select--userConvert" name="currencyFrom" id="currencyFrom" autocomplete="off">
                     <option value="0">USD</option>
                     <option value="1" selected="selected">UYU</option>
                     <option value="2">EUR</option>
@@ -97,10 +96,8 @@
                     <option value="5">CAD</option>
                     <option value="6">CLP</option>
                 </select>
-                <span class="material-symbols-outlined">
-                    currency_exchange
-                    </span>
-                <select name="currencyTo" id="currencyTo" class="selectBtn" autocomplete="off">
+                <p>to</p>
+                <select class="main__select--userConvert" name="currencyTo" id="currencyTo" autocomplete="off">
                     <option value="0" selected="selected">USD</option>
                     <option value="1">UYU</option>
                     <option value="2">EUR</option>
@@ -110,16 +107,16 @@
                     <option value="6">CLP</option>
                 </select>
             </div>
-            <p id="currencyResult"></p>
-            <button id="currencyBtn" class="submitBtn">Cotizar</button>
-        </div>
+            <p class="main__p--userConvert" id="currencyResult"></p>
+            <button class="main__button--userConvert" id="currencyBtn">Cotizar</button>
+        </section>
     </main>
-    <footer>
-        <ul class="social">
-            <li><a href="https://www.linkedin.com/in/dahian-sosa/" class="fa fa-linkedin fa-lg" target="_blank" aria-hidden="true"></a></li>
-            <li><a href="https://github.com/Orelin" class="fa fa-github fa-lg" target="_blank" aria-hidden="true"></a></li>
+    <footer class="footer">
+        <ul class="footer__ul">
+            <li class="footer__li"><a class="footer__a--social fa fa-linkedin fa-lg" href="https://www.linkedin.com/in/dahian-sosa/" target="_blank" aria-hidden="true"></a></li>
+            <li class="footer__li"><a class="footer__a--social fa fa-github fa-lg" href="https://github.com/Orelin" target="_blank" aria-hidden="true"></a></li>
         </ul>
-        <small>&copy; Copyright 2023, <a href="https://dsporfolio.netlify.app/" target="_blank">Dahian Sosa</a>. All Rights Reserved</small>
+        <small class="footer__small--cr">&copy; Copyright 2023 <a href="https://dsporfolio.netlify.app/" target="_blank">, Dahian Sosa</a>. All Rights Reserved</small>
     </footer>
     <script src="/scripts/app.js"></script>
     <script src="/scripts/currencyConverter.js"></script>
