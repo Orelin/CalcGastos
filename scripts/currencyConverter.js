@@ -2,7 +2,9 @@ const currencyBtn = document.querySelector("#currencyBtn");
 const currencyAmount = document.querySelector("#currencyAmount");
 const currencyFrom = document.querySelector("#currencyFrom");
 const currencyTo = document.querySelector("#currencyTo");
-const currencyResult = document.querySelector("#currencyResult");
+const currencyResultIn = document.querySelectorAll(".main__p--userConvert")[0];
+const currencyResultOut = document.querySelectorAll(".main__p--userConvert")[1];
+
 
 
 //!Events
@@ -66,18 +68,19 @@ function submitConverterBtn (){
 //! Currency converter, spinner and innerHTML
 function currencyConverter (data) {
 
-	let currencyAmountRate = currencyAmount.valueAsNumber
 	let FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
 	let FromToCurrency = currencyTo.options[currencyTo.value].textContent
 	let currencyConverted = Number(Object.values(data)[4])*currencyAmount.valueAsNumber
 	let currencyConvertedFixed = currencyConverted.toFixed(2)	
-	let resultContent = `Ingreso de Dinero: ${currencyAmount.valueAsNumber} ${FromSelectCurrency}. Egreso de Dinero ${currencyConvertedFixed} ${FromToCurrency}`
+	let resultContentIn = `Ingreso de Dinero: ${currencyAmount.valueAsNumber} ${FromSelectCurrency}.`
+	let resultContentOut = `Egreso de Dinero: ${currencyConvertedFixed} ${FromToCurrency}`
 
-	currencyResult.innerHTML = `
-		<div class="lds-dual-ring"></div>
-	`
+	// resultContentIn.innerHTML = `
+	// 	<div class="lds-dual-ring"></div>
+	// `
 
 	setTimeout(() => {
-		currencyResult.textContent = resultContent
-	}, 5000);
+		currencyResultIn.textContent = resultContentIn
+		currencyResultOut.textContent = resultContentOut
+	}, 3000);
 }

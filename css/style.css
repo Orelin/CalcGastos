@@ -169,6 +169,7 @@ body {
 }
 .main__input--currencyAmount{
     margin: 1rem;
+    text-align: center;
 }
 .main__select--userConvert{
     width: 50%;
@@ -176,7 +177,14 @@ body {
     text-align: center;
 }
 .main__select--userConvertSelect{}
-.main__p--userConvert{}
+
+
+.main__p--userConvert{
+    background-color: #38538a;
+    margin: .5rem;
+    text-align: center;
+}
+
 .main__button--userConvert{
     width: 100%;
     background-color: #394867;
