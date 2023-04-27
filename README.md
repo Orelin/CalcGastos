@@ -1,7 +1,5 @@
-# ProyectoCoderHouse
+# Calculadora de Gastos Mensuales/Anuales
 
-Curso: Javascript
-
-Pre-Entrega 4/4
+HTML, CSS, JS
 
 https://proyectocoderds.netlify.app/
