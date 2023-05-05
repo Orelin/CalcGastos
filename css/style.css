@@ -13,6 +13,8 @@ color4: #9BA4B5;
 
 body {
     margin: 0.5rem;
+    max-width: 80em;
+    margin: auto;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -76,7 +78,8 @@ body {
     padding: 0.5rem;
     font-size: 1rem;
 }
-.main__input, .main__input--currencyAmount {
+.main__input,
+.main__input--currencyAmount {
     padding: 20px;
     background-color: #38538a;
 }
@@ -158,39 +161,39 @@ body {
     -o-border-radius: 1rem;
 }
 
-.main__section--userConvert{
+.main__section--userConvert {
     padding-top: 2rem;
 }
-.main__div--userConvert{
+.main__div--userConvert {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     background-color: #394867;
 }
-.main__input--currencyAmount{
+.main__input--currencyAmount {
     margin: 1rem;
     text-align: center;
 }
-.main__select--userConvert{
+.main__select--userConvert {
     width: 50%;
-    margin: .5rem;
+    margin: 0.5rem;
     text-align: center;
 }
-.main__select--userConvertSelect{}
+.main__select--userConvertSelect {
+}
 
-
-.main__p--userConvert{
+.main__p--userConvert {
     background-color: #38538a;
-    margin: .5rem;
+    margin: 0.5rem;
     text-align: center;
 }
 
-.main__button--userConvert{
+.main__button--userConvert {
     width: 100%;
     background-color: #394867;
     text-align: center;
     color: #f1f6f9;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     border-radius: 1rem;
     -webkit-border-radius: 1rem;
     -moz-border-radius: 1rem;
@@ -198,23 +201,23 @@ body {
     -o-border-radius: 1rem;
 }
 
-.footer{
+.footer {
     margin-top: 2rem;
     width: 100%;
 }
-.footer__ul{
+.footer__ul {
     display: flex;
     justify-content: space-around;
     margin: 0 1rem;
 }
-.footer__li{}
-.footer__a--social{}
-.footer__small--cr{
+.footer__li {
+}
+.footer__a--social {
+}
+.footer__small--cr {
     display: flex;
     justify-content: center;
 }
-
-
 
 /* Sombra */
 .main__btn--reset,
@@ -227,7 +230,7 @@ body {
 .main__h3--totales,
 .main__h3--months,
 .main__div--userTextUi div,
-.main__button--resetBtn, 
+.main__button--resetBtn,
 .main__input--currencyAmount,
 .main__select--userConvert,
 .main__button--userConvert {
@@ -241,4 +244,17 @@ body {
 .main__button--userConvert:hover {
     opacity: 0.2;
     background-color: darkblue;
+}
+
+@media (min-width: 1000px) {
+    .main__div--userInput {
+        height: auto;
+        margin-bottom: 5%;
+    }
+    .footer__ul {
+        justify-content: center;
+    }
+    .footer__li {
+        margin: 0 1rem;
+    }
 }
