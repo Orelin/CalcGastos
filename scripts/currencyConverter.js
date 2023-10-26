@@ -46,8 +46,8 @@ function validConverter () {
 //!Submit converter Btn after validation
 function submitConverterBtn (){
 
-	let FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
-	let FromToCurrency = currencyTo.options[currencyTo.value].textContent
+	let FromSelectCurrency = currencyTo.options[currencyTo.value].textContent
+	let FromToCurrency = currencyFrom.options[currencyFrom.value].textContent
 	let url = `https://alpha-vantage.p.rapidapi.com/query?from_currency=${FromSelectCurrency}&function=CURRENCY_EXCHANGE_RATE&to_currency=${FromToCurrency}`
 	const options = {
 		method: 'GET',
@@ -68,8 +68,8 @@ function submitConverterBtn (){
 //! Currency converter, spinner and innerHTML
 function currencyConverter (data) {
 
-	let FromSelectCurrency = currencyFrom.options[currencyFrom.value].textContent
-	let FromToCurrency = currencyTo.options[currencyTo.value].textContent
+	let FromSelectCurrency = currencyTo.options[currencyTo.value].textContent
+	let FromToCurrency = currencyFrom.options[currencyFrom.value].textContent
 	let currencyConverted = Number(Object.values(data)[4])*currencyAmount.valueAsNumber
 	let currencyConvertedFixed = currencyConverted.toFixed(2)	
 	let resultContentIn = `Ingreso de Dinero: ${currencyAmount.valueAsNumber} ${FromSelectCurrency}.`
