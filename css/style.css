@@ -12,9 +12,6 @@ color4: #9BA4B5;
 }
 
 body {
-    margin: 0.5rem;
-    max-width: 80em;
-    margin: auto;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -247,6 +244,9 @@ body {
 }
 
 @media (min-width: 1000px) {
+    body{
+        margin: 0 10em;
+    }
     .main__div--userInput {
         height: auto;
         margin-bottom: 5%;
