@@ -65,6 +65,21 @@ function submitConverterBtn (){
 	.catch(err => console.error(err));
 }
 
+//!Alert
+function alertUi(text, type) {
+    Toastify({
+        text: text,
+        duration: 3000,
+        newWindow: true,
+        close: false,
+        gravity: 'bottom', // `top` or `bottom`
+        position: 'center', // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        className: type,
+        onClick: function () {}, // Callback after click
+    }).showToast();
+}
+
 //! Currency converter, spinner and innerHTML
 function currencyConverter (data) {
 
@@ -78,6 +93,7 @@ function currencyConverter (data) {
 	// resultContentIn.innerHTML = `
 	// 	<div class="lds-dual-ring"></div>
 	// `
+	alertUi('Cargando...', 'success');
 
 	setTimeout(() => {
 		currencyResultIn.textContent = resultContentIn
