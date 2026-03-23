@@ -1,37 +1,42 @@
-# https://calcgasto.netlify.app/
+# Calculadora de gastos
 
-# Calculadora de gastos y conversor de divisas
+Aplicación web estática para registrar ingresos/gastos mensuales y consultar un resumen anual. También incluye un conversor de monedas simple pensado como ayuda rápida dentro de la misma interfaz.
 
-Este proyecto es una herramienta para llevar un registro de ingresos y gastos mensuales, así como también para convertir divisas de manera rápida y fácil.
+## Qué mejora esta revisión
 
-## Funcionalidad
+- Corrige validaciones rotas en el formulario principal y en el conversor.
+- Reemplaza la clave embebida por una consulta dinámica a un endpoint abierto y sin clave.
+- Mejora el texto visible, el idioma del documento y algunos detalles de accesibilidad.
+- Hace más robusta la lectura desde `localStorage` para evitar que datos corruptos rompan la UI.
 
-Las principales funcionalidades de este proyecto incluyen:
+## Estructura
 
-- Seleccionar un mes y agregar ingresos y gastos
-- Generar un resumen mensual y un balance anual
-- Convertir divisas utilizando una cotización actualizada desde una API externa
+- `index.html`: marcado principal de la aplicación.
+- `css/app.css`: reset/base global.
+- `css/style.css`: estilos de la interfaz.
+- `scripts/app.js`: lógica de ingresos, gastos y resumen anual.
+- `scripts/currencyConverter.js`: lógica del conversor de monedas.
 
-## Tecnologías utilizadas
+## Cómo ejecutar
 
-Este proyecto fue creado utilizando las siguientes tecnologías:
+Como es un proyecto estático, basta con abrir `index.html` en el navegador. Si quieres evitar problemas con rutas absolutas (`/css/...`, `/scripts/...`), conviene servir la carpeta con un servidor local sencillo.
 
-- HTML
-- CSS
-- JavaScript
-- API externa de cotizaciones de divisas
+Ejemplo con Python:
 
-## Instrucciones de uso
+```bash
+python -m http.server 8000
+```
 
-Para utilizar este proyecto, sigue los siguientes pasos:
+Luego abre `http://localhost:8000`.
 
-1. Selecciona un mes de la lista desplegable.
-2. Ingresa el total de ingresos del mes.
-3. Agrega uno o varios gastos del mes.
-4. Se generará un resumen mensual con la información ingresada.
-5. Puedes cambiar de mes y agregar ingresos y gastos para ver un balance anual.
-6. Para utilizar el conversor de divisas, selecciona las dos divisas que deseas convertir e ingresa el monto a convertir.
+## Próximas mejoras recomendadas
 
-## Contacto
+1. Persistir también cada movimiento individual, no solo el acumulado mensual.
+2. Separar la lógica de negocio del acceso al DOM para poder testearla.
+3. Añadir tests automáticos para validaciones y cálculos.
+4. Si el proyecto crece, mover la consulta de divisas a un backend propio para cachear respuestas y controlar errores/rate limits.
 
-Si tienes preguntas o comentarios sobre este proyecto, puedes contactarme a través de mi correo electrónico [shaco-dark@outlook.com] o en https://www.linkedin.com/in/dahian-sosa/
+
+## Conversor de divisas
+
+El conversor consulta cotizaciones actualizadas contra el endpoint abierto de ExchangeRate-API y muestra la fecha de la última actualización devuelta por el servicio.

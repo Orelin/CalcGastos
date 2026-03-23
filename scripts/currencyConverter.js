@@ -1,102 +1,85 @@
-const currencyBtn = document.querySelector("#currencyBtn");
-const currencyAmount = document.querySelector("#currencyAmount");
-const currencyFrom = document.querySelector("#currencyFrom");
-const currencyTo = document.querySelector("#currencyTo");
-const currencyResultIn = document.querySelectorAll(".main__p--userConvert")[0];
-const currencyResultOut = document.querySelectorAll(".main__p--userConvert")[1];
+const currencyBtn = document.querySelector('#currencyBtn');
+const currencyAmount = document.querySelector('#currencyAmount');
+const currencyFrom = document.querySelector('#currencyFrom');
+const currencyTo = document.querySelector('#currencyTo');
+const currencyResultIn = document.querySelectorAll('.main__p--userConvert')[0];
+const currencyResultOut = document.querySelectorAll('.main__p--userConvert')[1];
+const currencyMeta = document.querySelector('#currencyMeta');
 
+const currencyCodeMap = ['USD', 'UYU', 'EUR', 'MXN', 'RUB', 'CAD', 'CLP'];
+const exchangeRateApiBaseUrl = 'https://open.er-api.com/v6/latest';
 
+initCurrencyConverter();
 
-//!Events
-eventListeners ();
-function eventListeners () {
+function initCurrencyConverter() {
+    currencyBtn.disabled = true;
+    validConverter();
 
-	currencyBtn.disabled = true;
-	validConverter();
-
-	//!Currency 1 Select
-	currencyFrom.addEventListener("change", () => {
-		validConverter ()
-	}),
-
-	//!Currency 2 Select
-	currencyTo.addEventListener("change", () => {
-		validConverter ()
-	}),
-
-	//!Amount
-	currencyAmount.addEventListener("input", () => {
-		validConverter ()
-	}),
-
-	//!SubmitBtn
-	currencyBtn.addEventListener("click", (e) => {
-		e.preventDefault;
-		submitConverterBtn()
-	})
+    currencyFrom.addEventListener('change', validConverter);
+    currencyTo.addEventListener('change', validConverter);
+    currencyAmount.addEventListener('input', validConverter);
+    currencyBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+        await submitConverterBtn();
+    });
 }
 
-//!Validate multiple
-function validConverter () {
-	if (currencyFrom.value !== currencyTo.value && currencyAmount.valueAsNumber > 0){
-		currencyBtn.disabled = false;
-	}else (currencyBtn.disabled = true);
+function validConverter() {
+    currencyBtn.disabled = !(currencyFrom.value !== currencyTo.value && currencyAmount.valueAsNumber > 0);
 }
 
-//!Submit converter Btn after validation
-function submitConverterBtn (){
+async function fetchExchangeRate(baseCurrency, targetCurrency) {
+    const response = await fetch(`${exchangeRateApiBaseUrl}/${baseCurrency}`);
 
-	let FromSelectCurrency = currencyTo.options[currencyTo.value].textContent
-	let FromToCurrency = currencyFrom.options[currencyFrom.value].textContent
-	let url = `https://alpha-vantage.p.rapidapi.com/query?from_currency=${FromSelectCurrency}&function=CURRENCY_EXCHANGE_RATE&to_currency=${FromToCurrency}`
-	const options = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': 'cc578b2a9cmshc1f63330b18b256p170242jsn98259ccb42b7',
-			'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
-		}
-	}
+    if (!response.ok) {
+        throw new Error(`No se pudo consultar la cotización (${response.status}).`);
+    }
 
-	currencyBtn.disabled = true
+    const data = await response.json();
 
-	fetch(url, options)
-	.then(response => response.json())
-	.then(response => currencyConverter(Object.values(response) [0]))
-	.catch(err => console.error(err));
+    if (data.result !== 'success') {
+        throw new Error('El servicio de cotización devolvió una respuesta inválida.');
+    }
+
+    const rate = data.rates?.[targetCurrency];
+    if (typeof rate !== 'number') {
+        throw new Error(`No hay cotización disponible para ${baseCurrency} → ${targetCurrency}.`);
+    }
+
+    return {
+        rate,
+        updatedAt: data.time_last_update_utc,
+        nextUpdateAt: data.time_next_update_utc,
+    };
 }
 
-//!Alert
-function alertUi(text, type) {
-    Toastify({
-        text: text,
-        duration: 3000,
-        newWindow: true,
-        close: false,
-        gravity: 'bottom', // `top` or `bottom`
-        position: 'center', // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        className: type,
-        onClick: function () {}, // Callback after click
-    }).showToast();
+async function submitConverterBtn() {
+    const fromCurrency = currencyCodeMap[Number(currencyFrom.value)];
+    const toCurrency = currencyCodeMap[Number(currencyTo.value)];
+    const amount = currencyAmount.valueAsNumber;
+
+    currencyBtn.disabled = true;
+    currencyResultIn.textContent = 'Cotizando...';
+    currencyResultOut.textContent = '';
+    currencyMeta.textContent = '';
+
+    try {
+        const { rate, updatedAt, nextUpdateAt } = await fetchExchangeRate(fromCurrency, toCurrency);
+        currencyConverter({ fromCurrency, toCurrency, amount, rate, updatedAt, nextUpdateAt });
+    } catch (error) {
+        currencyResultIn.textContent = '';
+        currencyResultOut.textContent = '';
+        currencyMeta.textContent = error.message;
+        alertUi(error.message, 'error');
+    } finally {
+        validConverter();
+    }
 }
 
-//! Currency converter, spinner and innerHTML
-function currencyConverter (data) {
+function currencyConverter({ fromCurrency, toCurrency, amount, rate, updatedAt, nextUpdateAt }) {
+    const convertedAmount = (amount * rate).toFixed(2);
 
-	let FromSelectCurrency = currencyTo.options[currencyTo.value].textContent
-	let FromToCurrency = currencyFrom.options[currencyFrom.value].textContent
-	let currencyConverted = Number(Object.values(data)[4])*currencyAmount.valueAsNumber
-	let currencyConvertedFixed = currencyConverted.toFixed(2)	
-	let resultContentIn = `Ingreso de Dinero: ${currencyAmount.valueAsNumber} ${FromSelectCurrency}.`
-	let resultContentOut = `Egreso de Dinero: ${currencyConvertedFixed} ${FromToCurrency}`
-
-	// resultContentIn.innerHTML = `
-	// 	<div class="lds-dual-ring"></div>
-	// `
-	alertUi('Cargando...', 'success');
-
-	setTimeout(() => {
-		currencyResultIn.textContent = resultContentIn
-		currencyResultOut.textContent = resultContentOut
-	}, 3000);
+    currencyResultIn.textContent = `${amount} ${fromCurrency}`;
+    currencyResultOut.textContent = `${convertedAmount} ${toCurrency}`;
+    currencyMeta.textContent = `Actualizado: ${updatedAt}. Próxima actualización estimada: ${nextUpdateAt}.`;
 }
