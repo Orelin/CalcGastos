@@ -258,3 +258,21 @@ body {
         margin: 0 1rem;
     }
 }
+
+
+.main__p--userConvertMeta {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.main__small--currencyAttribution {
+    display: block;
+    text-align: center;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.main__small--currencyAttribution a {
+    display: inline;
+    text-decoration: underline;
+}

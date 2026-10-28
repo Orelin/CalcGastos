@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>DS Bank</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Calculadora de Gastos</title>
 </head>
 <body>
     <header class="header">
@@ -18,9 +18,10 @@
         <!--! User Input -->
         <div class="main__div--userInput">
             <h2 class="main__h2">Ingreso de Datos del Mes</h2>
-            <form class="main__form" autocomplete="off">
+            <form class="main__form" autocomplete="off" novalidate>
                 <div class="main__div--form">
                     <select class="main__select" name="subject" id="months">                    
+                        <option value="" selected disabled>Haz clic y selecciona un mes</option>
                         <option value="0">Enero</option>
                         <option value="1">Febrero</option>
                         <option value="2">Marzo</option>
@@ -33,16 +34,15 @@
                         <option value="9">Octubre</option>
                         <option value="10">Noviembre</option>
                         <option value="11">Diciembre</option>
-                        <option value="12" selected disabled hidden>Hazme clic y Selecciona un mes</option>
                     </select>
                 </div>
                 <label class="main__label" for="amountUser">Total ingresos del mes</label>
-                <input class="main__input" type="number" placeholder= "Ingresos del mes $" id="amountUser">
+                <input class="main__input" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ingresos del mes" id="amountUser">
                 <label class="main__label" for="amount">Salida de gastos</label>
-                <input class="main__input" type="number" placeholder= "Gastos $" id="amount">
+                <input class="main__input" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Gastos del mes" id="amount">
                 <div class="main__div--btn">
-                    <button id="submitBtn" class="main__btn--submit" type="submit">Confirm</button>
-                    <button id="resetBtn" class="main__btn--reset" type="reset">Reset Datos</button>
+                    <button id="submitBtn" class="main__btn--submit" type="submit">Confirmar</button>
+                    <button id="resetBtn" class="main__btn--reset" type="reset">Borrar datos</button>
                 </div>
             </form>
             <div class="main__div--totales">
@@ -86,7 +86,8 @@
         <section class="main__section--userConvert">
             <h2 class="main__h2">Conversor de Divisas</h2>
             <div class="main__div--userConvert">
-                <input  class="main__input--currencyAmount" type="number" placeholder="$ 1500" name="currencyAmount" id="currencyAmount">
+                <label class="main__label" for="currencyAmount">Monto a convertir</label>
+                <input  class="main__input--currencyAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="$ 1500" name="currencyAmount" id="currencyAmount">
                 <select class="main__select--userConvert" name="currencyFrom" id="currencyFrom" autocomplete="off">
                     <option value="0">USD</option>
                     <option value="1" selected="selected">UYU</option>
@@ -107,9 +108,11 @@
                     <option value="6">CLP</option>
                 </select>
             </div>
-            <p class="main__p--userConvert" id="currencyResult"></p>
-            <p class="main__p--userConvert"></p>
-            <button class="main__button--userConvert" id="currencyBtn">Cotizar</button>
+            <p class="main__p--userConvert" id="currencyResult" aria-live="polite"></p>
+            <p class="main__p--userConvert" aria-live="polite"></p>
+            <p class="main__p--userConvert main__p--userConvertMeta" id="currencyMeta" aria-live="polite"></p>
+            <button class="main__button--userConvert" id="currencyBtn" type="button">Cotizar</button>
+            <small class="main__small--currencyAttribution">Cotizaciones por <a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer">ExchangeRate-API</a>.</small>
         </section>
     </main>
     <footer class="footer">
@@ -119,8 +122,8 @@
         </ul>
         <small class="footer__small--cr">&copy; Copyright 2023 <a href="https://dsporfolio.netlify.app/" target="_blank">, Dahian Sosa</a>. All Rights Reserved</small>
     </footer>
-    <script src="/scripts/app.js"></script>
-    <script src="/scripts/currencyConverter.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/currencyConverter.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://kit.fontawesome.com/a228eb7db9.js" crossorigin="anonymous"></script>
 </body>
